@@ -3,257 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analia Cacciamani - Educación y Pensamiento Crítico</title>
     
-    <title>Community Manager y Estrategia de Redes Sociales en La Plata | CM Studio</title>
-    <meta name="description" content="Potenciamos tu marca con gestión de redes sociales, creación de contenido y estrategias de crecimiento. Conectamos con tu audiencia y construimos comunidades sólidas en La Plata, Buenos Aires.">
-    <meta name="keywords" content="community manager, redes sociales, la plata, marketing digital, estrategia de contenido, social media, gestion de redes, cm studio">
-    <link rel="canonical" href="https://cmstudio-lp.netlify.app/"> <link rel="icon" type="image/png" href="galeria/hero-community-manager.png">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://cmstudio-lp.netlify.app/">
-    <meta property="og:title" content="Community Manager y Estrategia de Redes Sociales en La Plata | CM Studio">
-    <meta property="og:description" content="Potenciamos tu marca con gestión de redes sociales, creación de contenido y estrategias de crecimiento. Conectamos con tu audiencia y construimos comunidades sólidas.">
-    <meta property="og:image" content="https://cmstudio-lp.netlify.app/galeria/og-image-cm.png">
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://cmstudio-lp.netlify.app/">
-    <meta property="twitter:title" content="Community Manager y Estrategia de Redes Sociales en La Plata | CM Studio">
-    <meta property="twitter:description" content="Potenciamos tu marca con gestión de redes sociales, creación de contenido y estrategias de crecimiento. Conectamos con tu audiencia y construimos comunidades sólidas.">
-    <meta property="twitter:image" content="https://cmstudio-lp.netlify.app/galeria/og-image-cm.png">
-
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <link rel="stylesheet" href="style.css">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "CM Studio",
-      "image": "https://cmstudio-lp.netlify.app/galeria/logo-cm.png",
-      "@id": "https://cmstudio-lp.netlify.app/",
-      "url": "https://cmstudio-lp.netlify.app/",
-      "telephone": "+5491164020912",
-      "email": "theaiproyectcrew@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "La Plata",
-        "addressRegion": "Buenos Aires",
-        "postalCode": "B1900",
-        "addressCountry": "AR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -34.92145,
-        "longitude": -57.95453
-      },
-      "description": "Agencia de Community Management y estrategia de redes sociales en La Plata. Nos especializamos en crear contenido, gestionar comunidades y potenciar marcas en el entorno digital.",
-      "priceRange": "$$$",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "09:00",
-          "closes": "18:00"
-        }
-      ]
-    }
-    </script>
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body class="bg-white text-black">
+<body class="text-gray-800">
 
-    <header class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 border-b border-gray-200">
+    <header class="bg-white/90 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 border-b border-gray-200 shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
+            <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0">
-                    <a href="#" data-target="hero" class="nav-link text-3xl font-bold flex items-center" style="font-family: 'Playfair Display', serif;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-black"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-                        CM Studio
+                    <a href="#" data-target="inicio" class="nav-link flex items-center text-gray-900">
+                        <img src="data/Varios/logo.png" alt="Logo" class="w-12 h-12 rounded-full mr-4 object-cover" onerror="this.outerHTML = `<div class='w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-xs text-gray-500 p-1 mr-4'>logo.png</div>`">
+                        <div class="flex items-baseline">
+                            <span class="text-4xl font-title">Analia</span>
+                            <span class="text-lg font-semibold tracking-widest uppercase ml-2 font-sans">Cacciamani</span>
+                        </div>
                     </a>
                 </div>
-                
-                <div class="flex items-center">
-                    <nav id="desktop-nav" class="hidden md:flex md:items-center md:space-x-8 text-lg">
-                        <a href="#" data-target="hero" class="nav-link text-gray-600 hover:text-black transition-colors duration-300 pb-1 active">Inicio</a>
-                        <a href="#" data-target="precios" class="nav-link text-gray-600 hover:text-black transition-colors duration-300 pb-1">Planes</a>
-                        <a href="#" data-target="productos" class="nav-link text-gray-600 hover:text-black transition-colors duration-300 pb-1">Redes Sociales</a>
-                        <a href="#" data-target="porque-elegirnos" class="nav-link text-gray-600 hover:text-black transition-colors duration-300 pb-1">Nosotros</a>
-                        <a href="#" data-target="contacto" class="nav-link text-gray-600 hover:text-black transition-colors duration-300 pb-1">Contacto</a>
-                    </nav>
-                    <div class="md:hidden">
-                        <button id="mobile-menu-button" class="text-gray-700 hover:text-black focus:outline-none">
-                            <i data-lucide="menu" class="h-6 w-6"></i>
-                        </button>
-                    </div>
+                <nav id="desktop-nav" class="hidden md:flex md:items-center md:space-x-10 text-base font-medium">
+                    <a href="#" data-target="inicio" class="nav-link text-gray-500 hover:text-black transition-colors duration-300 active">Inicio</a>
+                    <a href="#" data-target="vision" class="nav-link text-gray-500 hover:text-black transition-colors duration-300">Visión</a>
+                    <a href="#" data-target="servicios" class="nav-link text-gray-500 hover:text-black transition-colors duration-300">Servicios</a>
+                    <a href="#" data-target="contacto" class="nav-link text-gray-500 hover:text-black transition-colors duration-300">Contacto</a>
+                </nav>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-black focus:outline-none">
+                        <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#" data-target="hero" class="nav-link block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium active">Inicio</a>
-                <a href="#" data-target="precios" class="nav-link block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Planes</a>
-                <a href="#" data-target="productos" class="nav-link block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Redes Sociales</a>
-                <a href="#" data-target="porque-elegirnos" class="nav-link block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Nosotros</a>
-                <a href="#" data-target="contacto" class="nav-link block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Contacto</a>
+            <div class="px-4 pt-4 pb-5 space-y-3">
+                <a href="#" data-target="inicio" class="nav-link block text-gray-700 hover:bg-gray-100 hover:text-black px-3 py-2 rounded-md text-base font-medium active">Inicio</a>
+                <a href="#" data-target="vision" class="nav-link block text-gray-700 hover:bg-gray-100 hover:text-black px-3 py-2 rounded-md text-base font-medium">Visión</a>
+                <a href="#" data-target="servicios" class="nav-link block text-gray-700 hover:bg-gray-100 hover:text-black px-3 py-2 rounded-md text-base font-medium">Servicios</a>
+                <a href="#" data-target="contacto" class="nav-link block text-gray-700 hover:bg-gray-100 hover:text-black px-3 py-2 rounded-md text-base font-medium">Contacto</a>
             </div>
         </div>
     </header>
 
-    <main>
-        <section id="hero" class="page-section relative flex items-center justify-center min-h-screen overflow-hidden bg-gray-100 pt-16">
+    <main class="pt-20">
+        <section id="inicio" class="page-section relative text-white overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <img src="galeria/hero-community-manager.png" alt="Community manager trabajando en una laptop con gráficos de redes sociales." class="w-full h-full object-cover" onerror="tryNextFormat(this, 'galeria/hero-community-manager')">
-                <div class="absolute inset-0 bg-white/60"></div> </div>
-
-            <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                <div class="text-center">
-                    <h1 class="animated animate-fadeInUp text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-black leading-tight">
-                        Conectamos Tu Marca con <span class="text-gray-800">Su Audiencia</span>
-                    </h1>
-                    <p class="animated animate-fadeInUp animation-delay-200 mt-6 max-w-2xl mx-auto text-xl md:text-2xl text-gray-700">
-                        Creamos estrategias de contenido y gestionamos tus redes sociales para construir comunidades leales y potenciar tu negocio.
+                <img src="data/Varios/image_00cbbb.png" 
+                     alt="Retrato de Analia Cacciamani" 
+                     class="w-full h-full object-cover object-center"
+                     onerror="this.outerHTML = `<div class='w-full h-full bg-gray-200 flex items-center justify-center text-center text-sm text-gray-600 p-4'>Error al cargar: ${this.src.split('/').pop()}</div>`">
+                <div class="absolute inset-0 bg-black/50"></div> </div>
+            
+            <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48">
+                <div class="max-w-3xl text-left animated animate-fadeInUp">
+                    <h1 class="text-6xl md:text-8xl font-title leading-tight text-white">Rediseñando la Educación</h1>
+                    <p class="mt-6 text-xl md:text-2xl text-gray-200">
+                        Un enfoque personalizado para potenciar el talento de cada estudiante.
                     </p>
-                    <ul class="mt-8 space-y-4 text-left max-w-md mx-auto text-gray-800 text-lg">
-                        <li class="animated animate-fadeInUp animation-delay-400 flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 text-green-600 mr-3 mt-1 flex-shrink-0"></i><span><strong class="text-black">Estrategias a Medida:</strong> Planes personalizados que se alinean con tus objetivos.</span></li>
-                        <li class="animated animate-fadeInUp animation-delay-600 flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 text-green-600 mr-3 mt-1 flex-shrink-0"></i><span><strong class="text-black">Contenido de Valor:</strong> Creamos publicaciones que generan interacción y engagement.</span></li>
-                        <li class="animated animate-fadeInUp animation-delay-800 flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 text-green-600 mr-3 mt-1 flex-shrink-0"></i><span><strong class="text-black">Crecimiento Sostenible:</strong> Nos enfocamos en resultados reales y medibles.</span></li>
-                    </ul>
-                    <div class="animated animate-fadeInUp animation-delay-800 mt-10 flex flex-wrap justify-center gap-4">
-                        <a href="#" data-target="contacto" class="nav-link bg-black hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg text-xl transition-transform duration-300 hover:scale-105">
-                            Empezar Proyecto
-                        </a>
-                        <a href="#" data-target="precios" class="nav-link bg-gray-200 hover:bg-gray-300 text-black font-semibold py-3 px-8 rounded-lg text-xl transition-transform duration-300 hover:scale-105">
-                            Ver Planes
+                    <div class="mt-10">
+                        <a href="#" data-target="servicios" class="nav-link-button bg-white hover:bg-gray-200 text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 inline-block shadow-lg">
+                            Explorar mis Servicios
                         </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="precios" class="page-section pt-20 pb-10 bg-gray-50">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-5xl md:text-6xl font-bold text-black scroll-animate">Planes de Community Management</h2>
-                    <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto scroll-animate">Soluciones flexibles para cada etapa de tu negocio. Elige el plan que impulse tu presencia online.</p>
+        <section id="vision" class="page-section hidden">
+            <div class="bg-white pt-24 pb-16">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div class="text-left">
+                            <h2 class="font-title text-7xl md:text-8xl text-gray-900 leading-tight">Mi Filosofía</h2>
+                            <div class="mt-6 text-lg text-gray-700 space-y-5">
+                                <p>Mi enfoque se nutre de una profunda influencia artística y social, motivando a cada estudiante a desarrollar un pensamiento crítico a través del diálogo y el análisis globalizado.</p>
+                                <p>El trabajo sobre el carácter y los valores constituye una base fundamental para una formación verdaderamente integral.</p>
+                                <p>Como defensora de los derechos del estudiante, creo que donde se cierra una puerta, tenemos la responsabilidad de abrir una ventana. Esto nos lleva a cuestionar: ¿cómo podemos hacerlo?, ¿quiénes pueden ayudarnos?, ¿existen otras formas de educar? A través de estas preguntas, descubrimos certezas en las respuestas.</p>
+                            </div>
+                        </div>
+                        <div class="relative mt-12 md:mt-0">
+                            <div class="aspect-w-4 aspect-h-3 w-full bg-gray-200 rounded-lg shadow-xl overflow-hidden">
+                                <img src="data/Varios/image_015286.jpg" alt="Foto de Analia Cacciamani con un grupo de estudiantes" class="w-full h-full object-cover" onerror="this.outerHTML = `<div class='w-full h-full bg-gray-200 flex items-center justify-center text-center text-sm text-gray-600 p-4'>Error al cargar:<br>${this.src.split('/').pop()}</div>`">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-animation max-w-6xl mx-auto">
-                    <article class="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow duration-300 flex flex-col scroll-animate border border-gray-200">
-                        <h3 class="text-4xl font-bold text-gray-800 mb-2">Esencial</h3>
-                        <p class="text-5xl font-bold text-black mb-6" style="font-family: 'EB Garamond', serif; font-style: normal;">$75.000 <span class="text-xl font-normal text-gray-500">/mes</span></p>
-                        <ul class="space-y-3 text-gray-600 mb-8 flex-grow text-lg">
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-600"></i>Gestión de 1 Red Social</li>
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-600"></i>3 Publicaciones semanales</li>
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-600"></i>Diseño de gráficas básicas</li>
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-600"></i>Interacción con la comunidad</li>
-                            <li class="flex items-center text-gray-400"><i data-lucide="x" class="w-5 h-5 mr-2"></i>Reporte de rendimiento mensual</li>
-                            <li class="flex items-center text-gray-400"><i data-lucide="x" class="w-5 h-5 mr-2"></i>Gestión de pauta publicitaria</li>
-                        </ul>
-                        <a href="#" data-target="contacto" class="nav-link mt-auto w-full text-center bg-black hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 text-xl">Contratar</a>
-                    </article>
-                    <article class="bg-gray-900 text-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col scroll-animate border-2 border-black relative">
-                         <div class="absolute top-0 -mt-3 w-full text-center"><span class="bg-black text-white px-4 py-1 rounded-full text-sm font-bold">MÁS POPULAR</span></div>
-                        <h3 class="text-4xl font-bold text-white mb-2">Crecimiento</h3>
-                        <p class="text-5xl font-bold text-white mb-6" style="font-family: 'EB Garamond', serif; font-style: normal;">$120.000 <span class="text-xl font-normal text-gray-400">/mes</span></p>
-                        <ul class="space-y-3 text-gray-300 mb-8 flex-grow text-lg">
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-400"></i>Gestión de 2 Redes Sociales</li>
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-400"></i>6 Publicaciones semanales</li>
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-400"></i>Diseño de gráficas avanzadas</li>
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-400"></i>Interacción y soporte prioritario</li>
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-400"></i>Reporte de rendimiento mensual</li>
-                            <li class="flex items-center text-gray-500"><i data-lucide="x" class="w-5 h-5 mr-2"></i>Gestión de pauta publicitaria</li>
-                        </ul>
-                        <a href="#" data-target="contacto" class="nav-link mt-auto w-full text-center bg-white hover:bg-gray-200 text-black font-semibold py-3 px-6 rounded-lg transition-colors duration-300 text-xl">Contratar</a>
-                    </article>
-                    <article class="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow duration-300 flex flex-col scroll-animate border border-gray-200">
-                        <h3 class="text-4xl font-bold text-gray-800 mb-2">Estratégico</h3>
-                        <p class="text-5xl font-bold text-black mb-6" style="font-family: 'EB Garamond', serif; font-style: normal;">$200.000 <span class="text-xl font-normal text-gray-500">/mes</span></p>
-                        <ul class="space-y-3 text-gray-600 mb-8 flex-grow text-lg">
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-600"></i>Gestión de hasta 4 Redes</li>
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-600"></i>15 Publicaciones semanales</li>
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-600"></i>Contenido de video (Reels/TikTok)</li>
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-600"></i>Interacción y soporte premium</li>
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-600"></i>Reporte y reunión estratégica</li>
-                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-600"></i>Gestión de pauta publicitaria</li>
-                        </ul>
-                        <a href="#" data-target="contacto" class="nav-link mt-auto w-full text-center bg-black hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 text-xl">Contratar</a>
-                    </article>
-                </div>
-                <div class="text-center mt-12">
-                    <p class="text-gray-500 text-md italic">Nota: Ninguno de nuestros planes incluye la toma de fotografías o producción de video profesional. El material debe ser provisto por el cliente.</p>
+            </div>
+            <div class="bg-gray-100 py-24">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 gap-8 max-w-3xl mx-auto">
+                        <div class="flex flex-col items-center text-center p-8 bg-white rounded-lg shadow-sm"><i data-lucide="key-round" class="w-12 h-12 text-black mb-4"></i><p class="text-xl text-gray-700 leading-relaxed">"Un aula alternativa, productora de cambios genuinos... Animarse a inventar nuevos caminos, interesantes atajos. Alterar, perturbar las prácticas, desarreglar lo que está aparentemente acomodado. Atreverse a desobedecer."</p><p class="mt-4 font-semibold text-gray-500">- Graciela Szyber</p></div>
+                        <div class="flex flex-col items-center text-center p-8 bg-white rounded-lg shadow-sm"><i data-lucide="brain-circuit" class="w-12 h-12 text-black mb-4"></i><p class="text-xl text-gray-700 leading-relaxed">"Por suerte, siempre algo se resiste, algo se nos escapa... Se trata de estar abierto a escuchar esa resistencia, esa presencia. La diferencia insiste y pide existir."</p><p class="mt-4 font-semibold text-gray-500">- Laura Duschatzky</p></div>
+                        <div class="flex items-center gap-6 p-8 bg-white rounded-lg shadow-sm"><i data-lucide="person-standing" class="w-16 h-16 text-black flex-shrink-0"></i><p class="text-xl font-semibold text-gray-900">¿Podremos sostener en las escuelas que se trata de ver al otro como <span class="font-bold">cuerpo que puede</span>?</p></div>
+                        <div class="flex items-center gap-6 p-8 bg-white rounded-lg shadow-sm"><i data-lucide="zap" class="w-16 h-16 text-black flex-shrink-0"></i><p class="text-xl font-semibold text-gray-900">¿Podremos desplegar vínculos que <span class="font-bold">habiliten y aumenten</span> nuestras potencias?</p></div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="productos" class="page-section pt-20 pb-10 bg-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-5xl md:text-6xl font-bold text-black scroll-animate">Redes Sociales que Gestionamos</h2>
-                    <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto scroll-animate">Nos especializamos en las plataformas clave para conectar con tu audiencia y construir tu marca.</p>
-                </div>
-                <div id="product-gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="product-item group">
-                        <div class="relative overflow-hidden rounded-lg shadow-md h-80 bg-gray-100 flex justify-center items-center border border-gray-200">
-                            <img src="galeria/instagram.png" alt="Gestión de Instagram" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="tryNextFormat(this, 'galeria/instagram')">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 p-6 w-full text-white">
-                                <h3 class="text-3xl font-bold">Instagram</h3>
-                                <p class="mt-1 text-lg">Gestión visual, Reels y Stories que cautivan.</p>
+        <section id="servicios" class="page-section hidden">
+            <div class="bg-white pt-24 pb-16">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="font-title text-7xl md:text-8xl text-gray-900">Servicios Pedagógicos</h2>
+                        <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">Soluciones adaptadas a las necesidades únicas de cada trayectoria escolar.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-16 items-center mb-16">
+                        <div class="space-y-4 text-lg">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-4">Diseño de Trayectorias Educativas Específicas</h3>
+                            <p>Acompaño a familias y estudiantes que, por dificultades de aprendizaje o necesidades particulares, requieren alternativas al sistema escolar tradicional. Brindo soluciones con un acompañamiento pedagógico personalizado y acceso a un campus virtual con certificación oficial, legalizada por el Ministerio de Educación.</p>
+                            <p>Mi enfoque trasciende lo académico para construir un camino de aprendizaje adaptado a cada estudiante, respetando sus tiempos, necesidades e intereses, en colaboración con un equipo de profesionales.</p>
+                            <div class="mt-8 pt-6 border-t border-gray-200">
+                                <p class="text-gray-600 italic">"El final de la trayectoria escolar de mi hija y su ingreso a Medicina son la prueba de que, con constancia y el apoyo adecuado, se pueden sortear dificultades como la dislexia."</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-rows-2 gap-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <img id="servicio-img-1" alt="Foto del servicio 1" class="aspect-square w-full h-full object-cover rounded-lg shadow-md bg-gray-200">
+                                <img id="servicio-img-2" alt="Foto del servicio 2" class="aspect-square w-full h-full object-cover rounded-lg shadow-md bg-gray-200">
+                            </div>
+                            <div>
+                                <img id="servicio-img-3" alt="Foto del servicio 3" class="w-full h-full object-cover rounded-lg shadow-md bg-gray-200">
                             </div>
                         </div>
                     </div>
-                    <div class="product-item group">
-                        <div class="relative overflow-hidden rounded-lg shadow-md h-80 bg-gray-100 flex justify-center items-center border border-gray-200">
-                            <img src="galeria/facebook.png" alt="Gestión de Facebook" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="tryNextFormat(this, 'galeria/facebook')">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 p-6 w-full text-white">
-                                <h3 class="text-3xl font-bold">Facebook</h3>
-                                <p class="mt-1 text-lg">Creación de comunidades, pauta y contenido de valor.</p>
+                    <div class="mt-24">
+                        <h3 class="text-4xl font-bold text-center mb-12 text-gray-900">Galería de Proyectos</h3>
+                        <div class="space-y-16">
+                            <div>
+                                <h4 class="text-3xl font-semibold text-center mb-8">Nivel Inicial - Primario</h4>
+                                <div id="gallery-primario" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                                    </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="product-item group">
-                        <div class="relative overflow-hidden rounded-lg shadow-md h-80 bg-gray-100 flex justify-center items-center border border-gray-200">
-                            <img src="galeria/tiktok.png" alt="Gestión de TikTok" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="tryNextFormat(this, 'galeria/tiktok')">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 p-6 w-full text-white">
-                                <h3 class="text-3xl font-bold">TikTok</h3>
-                                <p class="mt-1 text-lg">Videos cortos, tendencias y estrategias de viralización.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item group">
-                        <div class="relative overflow-hidden rounded-lg shadow-md h-80 bg-gray-100 flex justify-center items-center border border-gray-200">
-                           <img src="galeria/linkedin.png" alt="Gestión de LinkedIn" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="tryNextFormat(this, 'galeria/linkedin')">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 p-6 w-full text-white">
-                                <h3 class="text-3xl font-bold">LinkedIn</h3>
-                                <p class="mt-1 text-lg">Marca profesional, networking y estrategias B2B.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item group">
-                        <div class="relative overflow-hidden rounded-lg shadow-md h-80 bg-gray-100 flex justify-center items-center border border-gray-200">
-                            <img src="galeria/x.png" alt="Gestión de X (Twitter)" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="tryNextFormat(this, 'galeria/x')">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 p-6 w-full text-white">
-                                <h3 class="text-3xl font-bold">X (Twitter)</h3>
-                                <p class="mt-1 text-lg">Comunicación instantánea, debates y actualidad.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item group">
-                        <div class="relative overflow-hidden rounded-lg shadow-md h-80 bg-gray-100 flex justify-center items-center border border-gray-200">
-                            <img src="galeria/whatsapp.png" alt="Gestión de WhatsApp" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="tryNextFormat(this, 'galeria/whatsapp')">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 p-6 w-full text-white">
-                                <h3 class="text-3xl font-bold">WhatsApp</h3>
-                                <p class="mt-1 text-lg">Comunicación directa, catálogos y atención al cliente.</p>
+                            <div>
+                                <h4 class="text-3xl font-semibold text-center mb-8">Nivel Avanzado - Secundario</h4>
+                                <div id="gallery-secundario" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -261,113 +155,62 @@
             </div>
         </section>
 
-        <section id="porque-elegirnos" class="page-section pt-20 pb-20 bg-gray-50">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-5xl md:text-6xl font-bold text-black scroll-animate">El Arte de Crear Comunidad</h2>
-                    <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto scroll-animate">No solo gestionamos redes. Creamos conversaciones, construimos relaciones y le damos una voz auténtica a tu marca.</p>
-                </div>
-                
-                <div class="max-w-4xl mx-auto space-y-16">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 stagger-animation">
-                        <article class="bg-white p-8 rounded-lg scroll-animate border border-gray-200 shadow-sm">
-                            <h3 class="text-4xl font-bold text-black mb-4">Nuestra Misión</h3>
-                            <p class="text-gray-700 text-lg">Humanizar marcas en el entorno digital, creando conexiones genuinas entre ellas y sus audiencias a través de estrategias de comunicación creativas, empáticas y efectivas que generen un impacto memorable.</p>
-                        </article>
-                         <article class="bg-white p-8 rounded-lg scroll-animate border border-gray-200 shadow-sm">
-                            <h3 class="text-4xl font-bold text-black mb-4">Nuestra Visión</h3>
-                            <p class="text-gray-700 text-lg">Ser el socio estratégico de referencia para empresas que buscan no solo crecer en seguidores, sino construir una comunidad leal, activa y participativa que se convierta en el motor de su éxito a largo plazo.</p>
-                        </article>
+        <section id="contacto" class="page-section hidden">
+            <div class="bg-gray-100 py-24">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="font-title text-7xl md:text-8xl text-gray-900">Contacto</h2>
+                        <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">Iniciemos una conversación para construir juntos un nuevo camino.</p>
                     </div>
-
-                    <article class="bg-white p-8 rounded-lg scroll-animate border border-gray-200 shadow-sm">
-                        <h3 class="text-4xl font-bold text-black mb-4 text-center">Filosofía de Trabajo</h3>
-                        <p class="text-gray-700 text-lg text-center max-w-3xl mx-auto">Creemos en un enfoque colaborativo y transparente. Nos sumergimos en el ADN de cada marca para entender su esencia y sus objetivos. No aplicamos fórmulas; diseñamos estrategias artesanales. La comunicación constante, la adaptabilidad y la pasión por lo que hacemos son los pilares sobre los que construimos cada proyecto.</p>
-                    </article>
-
-                    <article class="scroll-animate">
-                        <h3 class="text-4xl font-bold text-black mb-8 text-center">Nuestros Valores</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center stagger-animation">
-                            <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-                                <i data-lucide="gem" class="w-12 h-12 mx-auto text-black mb-4"></i>
-                                <h4 class="text-2xl font-bold mb-2" style="font-family: 'Playfair Display', serif; font-style: normal; font-weight: 700;">Excelencia</h4>
-                                <p class="text-gray-600">Buscamos la máxima calidad en cada publicación, cada interacción y cada reporte. Nos obsesionan los detalles que marcan la diferencia.</p>
-                            </div>
-                            <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-                                <i data-lucide="users" class="w-12 h-12 mx-auto text-black mb-4"></i>
-                                <h4 class="text-2xl font-bold mb-2" style="font-family: 'Playfair Display', serif; font-style: normal; font-weight: 700;">Empatía</h4>
-                                <p class="text-gray-600">Nos ponemos en el lugar de tu marca y de tu audiencia para crear mensajes que resuenen, conecten y generen confianza.</p>
-                            </div>
-                            <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-                                <i data-lucide="trending-up" class="w-12 h-12 mx-auto text-black mb-4"></i>
-                                <h4 class="text-2xl font-bold mb-2" style="font-family: 'Playfair Display', serif; font-style: normal; font-weight: 700;">Innovación</h4>
-                                <p class="text-gray-600">El mundo digital cambia constantemente. Nos mantenemos en perpetuo aprendizaje para aplicar las últimas tendencias y herramientas a tu favor.</p>
+                    <div class="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+                        <div class="text-lg text-gray-700 space-y-5">
+                            <h3 class="text-3xl font-bold text-gray-900">Sobre Mí</h3>
+                            <p>Soy profesora de educación especial con 16 años de experiencia en educación en el hogar. Impulsada por el potencial del trabajo individualizado y el respeto por el ritmo de aprendizaje, me especialicé en inteligencias múltiples, diseño universal del aprendizaje (DUA) y otras pedagogías alternativas.</p>
+                            <p>Mi misión es acompañar la trayectoria educativa de cada estudiante, ayudándole a descubrir sus fortalezas y a trabajar en sus debilidades, con el apoyo de un equipo de maestras de distintas áreas.</p>
+                            <div class="mt-10 pt-8 border-t border-gray-200">
+                                <h4 class="text-2xl font-bold mb-6 text-center text-gray-900">Ponte en Contacto</h4>
+                                <div class="flex justify-center items-center space-x-8">
+                                    <a href="https://wa.me/5491152495584" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-black transition-transform duration-300 hover:scale-110" aria-label="Enviar mensaje por WhatsApp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l-.515 1.887 1.911-.509z"/>
+                                        </svg>
+                                    </a>
+                                    <button id="open-email-modal" class="text-gray-500 hover:text-black transition-transform duration-300 hover:scale-110" aria-label="Mostrar correo electrónico">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect width="20" height="16" x="2" y="4" rx="2"/>
+                                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </article>
-                    
-                    <article class="bg-white p-8 rounded-lg scroll-animate border border-gray-200 shadow-sm">
-                        <div class="text-center">
-                            <h3 class="text-4xl font-bold text-black mb-4">Nuestro Equipo</h3>
-                            <p class="text-gray-700 text-lg max-w-3xl mx-auto">Somos un colectivo de estrategas, creativos, redactores y analistas apasionados por la comunicación digital. Combinamos la precisión de los datos con la chispa de la creatividad para dar vida a marcas en el universo de las redes sociales. Más que un proveedor, seremos una extensión de tu propio equipo.</p>
+                        <div class="relative">
+                            <img src="data/Varios/image_00cbcc.png" alt="Foto de perfil de Analia Cacciamani" class="rounded-lg shadow-xl mx-auto" onerror="this.outerHTML = `<div class='w-full h-full bg-gray-200 flex items-center justify-center text-center text-sm text-gray-600 p-4 rounded-lg shadow-xl'>Error al cargar:<br>${this.src.split('/').pop()}</div>`">
                         </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="contacto" class="page-section pt-20 pb-10 bg-gray-900 text-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-5xl md:text-6xl font-bold scroll-animate">Hablemos de Tu Marca</h2>
-                    <p class="mt-4 text-xl text-gray-300 scroll-animate">¿Listo para llevar tu presencia online al siguiente nivel? Contáctanos y empecemos a crear.</p>
-                </div>
-                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-                    <div class="scroll-animate">
-                        <h3 class="text-4xl font-bold mb-6 text-center md:text-left">Información de Contacto</h3>
-                        <div class="space-y-4 text-gray-200 bg-gray-800 p-8 rounded-lg shadow-lg text-lg">
-                            <p class="flex items-center"><i data-lucide="map-pin" class="w-6 h-6 mr-4 text-white flex-shrink-0"></i> La Plata, Buenos Aires, Argentina</p>
-                            <a href="https://wa.me/5491164020912" target="_blank" class="flex items-center hover:text-white transition-colors duration-300">
-                                <i data-lucide="phone" class="w-6 h-6 mr-4 text-white flex-shrink-0"></i>
-                                +54 9 11 6402-0912
-                            </a>
-                            <button id="email-copy-button" class="flex items-center w-full text-left hover:text-white transition-colors duration-300">
-                                <i data-lucide="mail" class="w-6 h-6 mr-4 text-white flex-shrink-0"></i>
-                                <span id="email-text">theaiproyectcrew@gmail.com</span>
-                            </button>
-                        </div>
-                    </div>
-                     <div class="scroll-animate h-full">
-                        <iframe class="w-full h-full rounded-lg shadow-lg min-h-[320px]" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=La+Plata,+Buenos+Aires&hl=es&z=13&output=embed"></iframe>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-white border-t border-gray-200">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="text-center">
-                <p class="text-gray-500 text-md">© <span id="copyright-year"></span> CM Studio. Todos los derechos reservados.</p>
-            </div>
+    <footer class="bg-gray-100 border-t border-gray-200">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-gray-600">
+            <p>&copy; <span id="copyright-year"></span> Analia Cacciamani. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <div id="copy-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm text-center">
-            <h3 class="text-lg font-medium text-black mb-2">Copiar Email</h3>
-            <p class="text-gray-600 mb-4 text-lg">Haz clic en el botón para copiar nuestra dirección de correo.</p>
-            <div class="bg-gray-100 rounded-md p-3 mb-4">
-                <p id="copy-email-text" class="text-black text-lg">theaiproyectcrew@gmail.com</p>
-            </div>
-            <div class="flex gap-4">
-                <button id="copy-button" class="w-full bg-black hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-lg">Copiar</button>
-                <button id="close-modal-button" class="w-full bg-gray-200 hover:bg-gray-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-lg">Cerrar</button>
+    <div id="email-modal" class="fixed inset-0 bg-black bg-opacity-60 z-[100] hidden items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-lg shadow-2xl text-center w-full max-w-sm animated animate-fadeInUp">
+            <h3 class="text-2xl font-bold mb-4 text-gray-900">Correo Electrónico</h3>
+            <p id="email-text" class="text-lg bg-gray-100 p-3 rounded-md mb-6 text-gray-800 break-all">analiacacciamani@gmail.com</p>
+            <div class="flex justify-center space-x-4">
+                <button id="copy-email-button" class="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-300 font-semibold">Copiar</button>
+                <button id="close-modal-button" class="bg-gray-300 text-black px-6 py-2 rounded-lg hover:bg-gray-400 transition-colors duration-300 font-semibold">Cerrar</button>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/main.js" defer></script>
 
 </body>
 </html>

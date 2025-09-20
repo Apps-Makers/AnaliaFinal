@@ -1,0 +1,76 @@
+/* Estilo para títulos con cursiva elegante */
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+/* Estilo para cuerpo de texto elegante */
+body, p, a, li, button, span {
+    font-family: 'EB Garamond', serif;
+}
+/* Estilo para el enlace de navegación activo */
+.nav-link.active {
+    color: black;
+    font-weight: 600;
+    border-bottom: 2px solid black;
+}
+
+/* --- ANIMACIONES (Sin cambios) --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+.animate-fadeInRight { animation: fadeInRight 0.8s ease-out forwards; }
+.animate-fadeIn { animation: fadeIn 0.6s ease-in-out forwards; }
+
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-600 { animation-delay: 0.6s; }
+.animation-delay-800 { animation-delay: 0.8s; }
+
+.animated { opacity: 0; }
+
+/* Estilos para la galería de portfolio (sin cambios funcionales) */
+.product-item {
+    transition: transform 0.4s ease, opacity 0.4s ease, width 0.4s ease, padding 0.4s ease, margin 0.4s ease;
+    overflow: hidden;
+}
+.product-item.hidden {
+    transform: scale(0.9);
+    opacity: 0;
+    width: 0;
+    padding: 0;
+    margin: 0;
+}
+.filter-btn.active {
+    background-color: #000000; /* Negro */
+    color: white;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Animaciones en Scroll (sin cambios) */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.8s ease-out;
+}
+.scroll-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.stagger-animation > * {
+    transition-delay: var(--stagger-delay);
+}
+
+.page-section {
+    scroll-margin-top: 4rem; /* Ajustar a la altura de tu header */
+}

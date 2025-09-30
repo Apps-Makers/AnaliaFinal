@@ -449,20 +449,29 @@
             // --- Lógica de Carrusel Genérica ---
             const setupCarousel = (carouselId) => {
                 const carouselContainer = document.getElementById(carouselId);
-                if (carouselContainer) {
-                    const images = carouselContainer.getElementsByTagName('img');
-                    let currentImageIndex = 0;
+                if (!carouselContainer) return;
+                const images = Array.from(carouselContainer.getElementsByTagName('img'));
+                if (images.length === 0) return;
 
-                    if (images.length > 0) {
-                        images[currentImageIndex].classList.remove('opacity-0');
+                let currentIndex = 0;
 
-                        setInterval(() => {
-                            images[currentImageIndex].classList.add('opacity-0');
-                            currentImageIndex = (currentImageIndex + 1) % images.length;
-                            images[currentImageIndex].classList.remove('opacity-0');
-                        }, 2000);
-                    }
-                }
+                const showSlide = (index) => {
+                    images.forEach((img, i) => {
+                        // Usamos toggle con un segundo argumento booleano para añadir/quitar la clase.
+                        // Si i !== index es true (la imagen no es la actual), añade 'opacity-0'.
+                        // Si i !== index es false (la imagen es la actual), quita 'opacity-0'.
+                        img.classList.toggle('opacity-0', i !== index);
+                    });
+                };
+
+                // Mostrar la primera imagen al cargar.
+                showSlide(currentIndex);
+
+                // Cambiar a la siguiente imagen en intervalos.
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    showSlide(currentIndex);
+                }, 3000); // Intervalo de 3 segundos.
             };
 
             // Iniciar ambos carruseles
@@ -484,7 +493,6 @@
                     const height = img.offsetHeight > 0 ? img.offsetHeight : 400;
                     const originalSrcPath = img.dataset.originalSrc || img.getAttribute('src'); // Leemos el atributo original
                     
-                    // Corregido: No codificar el prefijo "Ruta: "
                     img.src = `https://placehold.co/${width}x${height}/E7D9C7/1B4D3E?text=Ruta: ${encodeURIComponent(originalSrcPath)}`;
                     console.warn(`No se pudo cargar la imagen: ${originalSrcPath}`);
                 };

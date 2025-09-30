@@ -1,216 +1,475 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analia Cacciamani - Educación y Pensamiento Crítico</title>
+    <title>Cigoto - Espacio Educativo</title>
     
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
     
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Iconos (Lucide) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <link rel="stylesheet" href="css/estilos.css">
-</head>
-<body class="text-gray-800">
+    <style>
+        :root {
+            --color-bg-main: #F9F7F3;          /* Blanco cálido */
+            --color-bg-alt: #E7D9C7;        /* Beige cálido medio */
+            --color-bg-mint: #D8E2DC;       /* Verde Menta Suave */
+            --color-brushstroke: rgba(231, 217, 199, 0.4); /* Beige para pinceladas */
+            --color-bg-dark-section: #1B4D3E; /* Verde Inglés */
+            --color-text-main: #1B4D3E;       /* Verde Inglés */
+            --color-accent-primary: #8A9A87;  /* Verde Salvia (armoniza con Verde Inglés) */
+            --color-accent-secondary: #B38A54;/* Marrón cálido/ocre */
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Josefin Sans', sans-serif;
+        }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg-main);
+            color: var(--color-text-main);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            /* Efecto de pinceladas estéticas */
+            background-image:
+                radial-gradient(circle at 15% 20%, var(--color-brushstroke) 0%, transparent 30%),
+                radial-gradient(circle at 85% 70%, var(--color-brushstroke) 0%, transparent 40%);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        /* Clases personalizadas para colores */
+        .bg-main { background-color: var(--color-bg-main); }
+        .bg-alt { background-color: var(--color-bg-alt); }
+        .bg-mint { background-color: var(--color-bg-mint); }
+        .bg-dark-section { background-color: var(--color-bg-dark-section); }
+        .text-main { color: var(--color-text-main); }
+        .text-alt { color: var(--color-bg-main); } /* Texto sobre fondos oscuros */
+        .text-accent-primary { color: var(--color-accent-primary); }
+        .text-accent-secondary { color: var(--color-accent-secondary); }
+        .hover\:text-accent-secondary:hover { color: var(--color-accent-secondary); }
+        .bg-accent-secondary { background-color: var(--color-accent-secondary); }
+        .border-accent-primary { border-color: var(--color-accent-primary); }
+        
+        #desktop-menu li a, #mobile-menu a {
+            font-family: var(--font-body);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
 
-    <header class="bg-white/90 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 border-b border-gray-200 shadow-sm">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0">
-                    <a href="#" data-target="inicio" class="nav-link flex items-center text-gray-900">
-                        <img src="data/Varios/logo.png" alt="Logo" class="w-12 h-12 rounded-full mr-4 object-cover" onerror="this.outerHTML = `<div class='w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-xs text-gray-500 p-1 mr-4'>logo.png</div>`">
-                        <div class="flex items-baseline">
-                            <span class="text-4xl font-title">Analia</span>
-                            <span class="text-lg font-semibold tracking-widest uppercase ml-2 font-sans">Cacciamani</span>
-                        </div>
-                    </a>
+        /* Estilo para las secciones que actúan como páginas */
+        .page-section { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .page-section.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Estilo para el botón del menú móvil */
+        .hamburger-line { transition: all 0.3s ease-in-out; }
+        .hamburger.open .line-1 { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.open .line-2 { opacity: 0; }
+        .hamburger.open .line-3 { transform: rotate(-45deg) translate(7px, -6px); }
+
+        /* Estilo para las rayas horizontales divisorias */
+        .section-divider { border-top: 1px solid var(--color-accent-primary); }
+
+        /* Estilos para el acordeón de FAQ */
+        .faq-question svg { transition: transform 0.3s ease; }
+        .faq-question.open svg { transform: rotate(180deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ========== HEADER ========== -->
+    <header id="header" class="sticky top-0 z-50 bg-main/80 backdrop-blur-md shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+             <a href="#home" class="flex items-center space-x-4">
+                <img src="images/logo.png" alt="Logo de Cigoto" class="w-12 h-12 rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/120x120/ccc/333?text='+encodeURIComponent(this.src);">
+                <span class="font-heading text-3xl font-bold text-main">Cigoto</span>
+            </a>
+            <ul id="desktop-menu" class="hidden md:flex items-center space-x-8 text-sm tracking-wider">
+                <li><a href="#home" class="text-main hover:text-accent-secondary">INICIO</a></li>
+                <li><a href="#servicios" class="text-main hover:text-accent-secondary">SERVICIOS</a></li>
+                <li><a href="#proyecto" class="text-main hover:text-accent-secondary">PROPUESTA PEDAGÓGICA</a></li>
+                <li><a href="#educadores" class="text-main hover:text-accent-secondary">NUESTRO EQUIPO</a></li>
+                <li><a href="#contacto" class="text-main hover:text-accent-secondary">CONTACTO</a></li>
+            </ul>
+            <button id="mobile-menu-button" class="md:hidden text-main focus:outline-none hamburger">
+                <div class="w-6 h-6 flex flex-col justify-around">
+                    <span class="block w-full h-0.5 bg-main hamburger-line line-1"></span>
+                    <span class="block w-full h-0.5 bg-main hamburger-line line-2"></span>
+                    <span class="block w-full h-0.5 bg-main hamburger-line line-3"></span>
                 </div>
-                <nav id="desktop-nav" class="hidden md:flex md:items-center md:space-x-10 text-base font-medium">
-                    <a href="#" data-target="inicio" class="nav-link text-gray-500 hover:text-black transition-colors duration-300 active">Inicio</a>
-                    <a href="#" data-target="vision" class="nav-link text-gray-500 hover:text-black transition-colors duration-300">Visión</a>
-                    <a href="#" data-target="servicios" class="nav-link text-gray-500 hover:text-black transition-colors duration-300">Servicios</a>
-                    <a href="#" data-target="contacto" class="nav-link text-gray-500 hover:text-black transition-colors duration-300">Contacto</a>
-                </nav>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-black focus:outline-none">
-                        <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-            <div class="px-4 pt-4 pb-5 space-y-3">
-                <a href="#" data-target="inicio" class="nav-link block text-gray-700 hover:bg-gray-100 hover:text-black px-3 py-2 rounded-md text-base font-medium active">Inicio</a>
-                <a href="#" data-target="vision" class="nav-link block text-gray-700 hover:bg-gray-100 hover:text-black px-3 py-2 rounded-md text-base font-medium">Visión</a>
-                <a href="#" data-target="servicios" class="nav-link block text-gray-700 hover:bg-gray-100 hover:text-black px-3 py-2 rounded-md text-base font-medium">Servicios</a>
-                <a href="#" data-target="contacto" class="nav-link block text-gray-700 hover:bg-gray-100 hover:text-black px-3 py-2 rounded-md text-base font-medium">Contacto</a>
-            </div>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-main text-center">
+            <a href="#home" class="block py-3 px-6 text-sm text-main hover:bg-alt">INICIO</a>
+            <a href="#servicios" class="block py-3 px-6 text-sm text-main hover:bg-alt">SERVICIOS</a>
+            <a href="#proyecto" class="block py-3 px-6 text-sm text-main hover:bg-alt">PROPUESTA PEDAGÓGICA</a>
+            <a href="#educadores" class="block py-3 px-6 text-sm text-main hover:bg-alt">NUESTRO EQUIPO</a>
+            <a href="#contacto" class="block py-3 px-6 text-sm text-main hover:bg-alt">CONTACTO</a>
         </div>
     </header>
 
-    <main class="pt-20">
-        <section id="inicio" class="page-section relative text-white overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <img src="data/Varios/image_00cbbb.png" 
-                     alt="Retrato de Analia Cacciamani" 
-                     class="w-full h-full object-cover object-center"
-                     onerror="this.outerHTML = `<div class='w-full h-full bg-gray-200 flex items-center justify-center text-center text-sm text-gray-600 p-4'>Error al cargar: ${this.src.split('/').pop()}</div>`">
-                <div class="absolute inset-0 bg-black/50"></div> </div>
-            
-            <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48">
-                <div class="max-w-3xl text-left animated animate-fadeInUp">
-                    <h1 class="text-6xl md:text-8xl font-title leading-tight text-white">Rediseñando la Educación</h1>
-                    <p class="mt-6 text-xl md:text-2xl text-gray-200">
-                        Un enfoque personalizado para potenciar el talento de cada estudiante.
+    <main>
+        <!-- ========== SECCIÓN INICIO ========== -->
+        <section id="home" class="page-section">
+            <div class="container mx-auto px-6 pt-16 pb-12 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold font-heading mb-12 tracking-wider">BIENVENIDOS</h1>
+            </div>
+
+            <!-- Full-width Carousel Container -->
+            <div id="image-carousel" class="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px] overflow-hidden bg-alt">
+                <img src="images/home-carousel-1.jpg" alt="Enseñanza personalizada" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/ccc/333?text='+encodeURIComponent(this.src);">
+                <img src="images/home-carousel-2.jpg" alt="Todas las materias" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/ccc/333?text='+encodeURIComponent(this.src);">
+                <img src="images/home-carousel-3.jpg" alt="Apoyo escolar" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/ccc/333?text='+encodeURIComponent(this.src);">
+                <img src="images/home-carousel-4.jpg" alt="Proyectos de inclusión" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/ccc/333?text='+encodeURIComponent(this.src);">
+                <img src="images/home-carousel-5.jpg" alt="Niveles primario y secundario" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/ccc/333?text='+encodeURIComponent(this.src);">
+            </div>
+
+            <div class="container mx-auto px-6 pt-16 pb-24 text-center">
+                <div class="max-w-3xl mx-auto text-lg leading-relaxed text-main space-y-6">
+                    <p>Cigoto está conformado por un grupo de maestras dedicadas a la <strong class="font-semibold">enseñanza a domicilio</strong> para alumnos de nivel primario y secundario.</p>
+                    <p>Abarcamos las áreas de Prácticas del Lenguaje, Ciencias Sociales, Ciencias Naturales, Matemáticas e Inglés y ofrecemos un servicio de <strong class="font-semibold">acompañamiento áulico (maestra de apoyo)</strong> para proyectos de inclusión dentro de las escuelas, por fuera de las obras sociales.</p>
+                </div>
+                <div class="py-16"><div class="section-divider max-w-xs mx-auto"></div></div>
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                    <div class="flex flex-col items-center">
+                        <i data-lucide="book-open" class="w-12 h-12 mb-4 text-accent-secondary"></i>
+                        <h3 class="font-heading font-bold text-xl mb-2">APRENDIZAJE</h3>
+                        <p class="text-gray-700">Construimos conocimientos que despiertan pasión y permanecen en el tiempo, favoreciendo el desarrollo cognitivo y cultural.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <i data-lucide="puzzle" class="w-12 h-12 mb-4 text-accent-secondary"></i>
+                        <h3 class="font-heading font-bold text-xl mb-2">INCLUSIÓN</h3>
+                        <p class="text-gray-700">Acompañamos a cada niño en su proceso, respetando ritmos y posibilidades, brindando apoyo dentro y fuera del aula.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <i data-lucide="home" class="w-12 h-12 mb-4 text-accent-secondary"></i>
+                        <h3 class="font-heading font-bold text-xl mb-2">PERSONALIZACIÓN</h3>
+                        <p class="text-gray-700">Ofrecemos clases a domicilio y apoyo escolar en distintas áreas, adaptando la propuesta a cada necesidad y contexto familiar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECCIÓN SERVICIOS ========== -->
+        <section id="servicios" class="page-section bg-main py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Nuestros Servicios</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-main leading-relaxed">
+                        Entendemos que todos los seres humanos aprendemos y nos desarrollamos, pero no de la misma manera. Nuestro servicio se basa en esta convicción.
                     </p>
-                    <div class="mt-10">
-                        <a href="#" data-target="servicios" class="nav-link-button bg-white hover:bg-gray-200 text-gray-900 font-bold py-3 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 inline-block shadow-lg">
-                            Explorar mis Servicios
-                        </a>
+                </div>
+
+                <!-- Carousel de Imágenes para Servicios -->
+                <div id="services-carousel" class="relative w-full max-w-4xl mx-auto h-64 sm:h-80 md:h-96 lg:h-[450px] overflow-hidden bg-alt rounded-lg shadow-lg mb-16">
+                    <img src="images/services-carousel-1.jpg" alt="Aprendizaje Diverso" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.onerror=null;this.src='https://placehold.co/1200x800/ccc/333?text='+encodeURIComponent(this.src);">
+                    <img src="images/services-carousel-2.jpg" alt="Enfoque en Posibilidades" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.onerror=null;this.src='https://placehold.co/1200x800/ccc/333?text='+encodeURIComponent(this.src);">
+                    <img src="images/services-carousel-3.jpg" alt="Maestras Mediadoras" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.onerror=null;this.src='https://placehold.co/1200x800/ccc/333?text='+encodeURIComponent(this.src);">
+                </div>
+
+
+                <!-- Texto -->
+                <div class="grid md:grid-cols-2 gap-16 items-center mb-16">
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-heading font-bold mb-4">Una Mirada, no una Etiqueta</h3>
+                        <p class="text-gray-700">
+                            Consideramos que cualquier tipo de diagnóstico (dislexia, discalculia, autismo, TDAH, entre otros) nos sirve para arrojar luz y comprender, pero nunca para etiquetar. 
+                        </p>
                     </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-heading font-bold mb-4">Construir sobre Posibilidades</h3>
+                        <p class="text-gray-700">
+                           No trabajamos únicamente sobre las dificultades, sino sobre las posibilidades. Quienes conformamos Cigoto somos maestras y construimos oportunidades que contribuyan en el proceso de enseñanza-aprendizaje.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Cita Final en un Rectángulo -->
+                <div class="mt-8 text-center max-w-3xl mx-auto bg-mint p-8 md:p-12 rounded-lg shadow-sm border border-accent-primary/20">
+                     <p class="text-2xl font-body italic text-main mb-6">"si un niño es incapaz de aprender es porque nosotros somos incapaces de enseñar."</p>
+                     <p class="text-lg font-semibold uppercase tracking-wider text-main">El maestro como mediador cultural, no como portavoz de contenidos.</p>
+                     <p class="mt-8 text-main">El nombre <strong class="font-bold">Cigoto</strong> significa “El inicio del desarrollo”.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========== SECCIÓN PROPUESTA PEDAGÓGICA ========== -->
+        <section id="proyecto" class="page-section bg-main py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Nuestra Propuesta Pedagógica</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-main leading-relaxed">
+                        Nuestra metodología se centra en un aprendizaje significativo y personalizado, adaptándonos a las necesidades individuales de cada estudiante para potenciar sus fortalezas y acompañar sus desafíos.
+                    </p>
+                </div>
+
+                <!-- Principios Fundamentales -->
+                <div class="grid md:grid-cols-2 gap-12 items-center text-left mb-16">
+                     <div class="flex flex-col gap-8">
+                        <img src="images/propuesta-1.jpg" alt="Enseñanza personalizada" class="rounded-lg shadow-md w-full" onerror="this.onerror=null;this.src='https://placehold.co/600x400/ccc/333?text='+encodeURIComponent(this.src);">
+                        <img src="images/propuesta-2.jpg" alt="Aprendizaje Activo" class="rounded-lg shadow-md w-full" onerror="this.onerror=null;this.src='https://placehold.co/600x400/ccc/333?text='+encodeURIComponent(this.src);">
+                    </div>
+                     <div>
+                         <h3 class="text-2xl font-heading font-bold mb-6">Principios Fundamentales</h3>
+                         <ul class="space-y-6 text-main text-lg">
+                            <li class="flex items-start"><i data-lucide="brain-circuit" class="w-6 h-6 mr-4 text-accent-secondary mt-1 flex-shrink-0"></i><span><strong class="font-semibold">Ser reflexivo y pensante:</strong> Nuestro objetivo es proponer situaciones de enseñanza que no tomen al niño como un ser operacional, sino como un individuo con juicio propio y capacidad de comprensión.</span></li>
+                            <li class="flex items-start"><i data-lucide="flame" class="w-6 h-6 mr-4 text-accent-secondary mt-1 flex-shrink-0"></i><span><strong class="font-semibold">Pasión por el conocimiento:</strong> No solo aprendemos para ser evaluados, sino que construimos conocimientos para despertar la pasión por el saber mismo.</span></li>
+                            <li class="flex items-start"><i data-lucide="milestone" class="w-6 h-6 mr-4 text-accent-secondary mt-1 flex-shrink-0"></i><span><strong class="font-semibold">Aprendizaje constructivo:</strong> Entendemos el aprendizaje como un proceso que produce cultura y conocimiento significativo y relevante, que es el que verdaderamente no se olvida.</span></li>
+                             <li class="flex items-start"><i data-lucide="trending-up" class="w-6 h-6 mr-4 text-accent-secondary mt-1 flex-shrink-0"></i><span><strong class="font-semibold">La inteligencia se construye:</strong> La inteligencia no es previa al aprendizaje; el mismo proceso de aprender produce desarrollo cognitivo y nos hace más inteligentes.</span></li>
+                             <li class="flex items-start"><i data-lucide="eye" class="w-6 h-6 mr-4 text-accent-secondary mt-1 flex-shrink-0"></i><span><strong class="font-semibold">Evaluación continua:</strong> Para nosotras, la evaluación reside en la observación continua del proceso, preocupándonos por cómo nuestras acciones repercuten en la transformación de sus conocimientos, discursos y actitudes.</span></li>
+                        </ul>
+                     </div>
+                </div>
+
+                <div class="py-10"><div class="section-divider max-w-xs mx-auto"></div></div>
+                
+                <!-- Metodología -->
+                <div class="mt-16">
+                     <h3 class="text-2xl font-heading font-bold mb-12 text-center">Áreas de Acompañamiento</h3>
+                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-4xl mx-auto">
+                         <div class="flex flex-col items-center p-4 bg-alt rounded-lg shadow-sm">
+                             <i data-lucide="languages" class="w-10 h-10 mb-2 text-accent-secondary"></i>
+                             <span class="text-sm font-semibold text-center uppercase">Prácticas del Lenguaje</span>
+                         </div>
+                         <div class="flex flex-col items-center p-4 bg-alt rounded-lg shadow-sm">
+                             <i data-lucide="landmark" class="w-10 h-10 mb-2 text-accent-secondary"></i>
+                             <span class="text-sm font-semibold text-center uppercase">Ciencias Sociales</span>
+                         </div>
+                         <div class="flex flex-col items-center p-4 bg-alt rounded-lg shadow-sm">
+                             <i data-lucide="flask-conical" class="w-10 h-10 mb-2 text-accent-secondary"></i>
+                             <span class="text-sm font-semibold text-center uppercase">Ciencias Naturales</span>
+                         </div>
+                         <div class="flex flex-col items-center p-4 bg-alt rounded-lg shadow-sm">
+                             <i data-lucide="sigma" class="w-10 h-10 mb-2 text-accent-secondary"></i>
+                             <span class="text-sm font-semibold text-center uppercase">Matemáticas</span>
+                         </div>
+                          <div class="flex flex-col items-center p-4 bg-alt rounded-lg shadow-sm col-span-2 lg:col-span-1">
+                             <i data-lucide="globe-2" class="w-10 h-10 mb-2 text-accent-secondary"></i>
+                             <span class="text-sm font-semibold text-center uppercase">Inglés</span>
+                         </div>
+                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="vision" class="page-section hidden">
-            <div class="bg-white pt-24 pb-16">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid md:grid-cols-2 gap-16 items-center">
-                        <div class="text-left">
-                            <h2 class="font-title text-7xl md:text-8xl text-gray-900 leading-tight">Mi Filosofía</h2>
-                            <div class="mt-6 text-lg text-gray-700 space-y-5">
-                                <p>Mi enfoque se nutre de una profunda influencia artística y social, motivando a cada estudiante a desarrollar un pensamiento crítico a través del diálogo y el análisis globalizado.</p>
-                                <p>El trabajo sobre el carácter y los valores constituye una base fundamental para una formación verdaderamente integral.</p>
-                                <p>Como defensora de los derechos del estudiante, creo que donde se cierra una puerta, tenemos la responsabilidad de abrir una ventana. Esto nos lleva a cuestionar: ¿cómo podemos hacerlo?, ¿quiénes pueden ayudarnos?, ¿existen otras formas de educar? A través de estas preguntas, descubrimos certezas en las respuestas.</p>
-                            </div>
-                        </div>
-                        <div class="relative mt-12 md:mt-0">
-                            <div class="aspect-w-4 aspect-h-3 w-full bg-gray-200 rounded-lg shadow-xl overflow-hidden">
-                                <img src="data/Varios/image_015286.jpg" alt="Foto de Analia Cacciamani con un grupo de estudiantes" class="w-full h-full object-cover" onerror="this.outerHTML = `<div class='w-full h-full bg-gray-200 flex items-center justify-center text-center text-sm text-gray-600 p-4'>Error al cargar:<br>${this.src.split('/').pop()}</div>`">
-                            </div>
-                        </div>
-                    </div>
+        <!-- ========== SECCIÓN NUESTRO EQUIPO ========== -->
+        <section id="educadores" class="page-section bg-main py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Nuestro Equipo</h2>
+                    <p class="max-w-3xl mx-auto text-lg leading-relaxed text-gray-700">
+                        Somos un equipo de maestras profesionales, apasionadas por la educación y en constante formación, comprometidas con un acompañamiento cercano y respetuoso.
+                    </p>
                 </div>
-            </div>
-            <div class="bg-gray-100 py-24">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid grid-cols-1 gap-8 max-w-3xl mx-auto">
-                        <div class="flex flex-col items-center text-center p-8 bg-white rounded-lg shadow-sm"><i data-lucide="key-round" class="w-12 h-12 text-black mb-4"></i><p class="text-xl text-gray-700 leading-relaxed">"Un aula alternativa, productora de cambios genuinos... Animarse a inventar nuevos caminos, interesantes atajos. Alterar, perturbar las prácticas, desarreglar lo que está aparentemente acomodado. Atreverse a desobedecer."</p><p class="mt-4 font-semibold text-gray-500">- Graciela Szyber</p></div>
-                        <div class="flex flex-col items-center text-center p-8 bg-white rounded-lg shadow-sm"><i data-lucide="brain-circuit" class="w-12 h-12 text-black mb-4"></i><p class="text-xl text-gray-700 leading-relaxed">"Por suerte, siempre algo se resiste, algo se nos escapa... Se trata de estar abierto a escuchar esa resistencia, esa presencia. La diferencia insiste y pide existir."</p><p class="mt-4 font-semibold text-gray-500">- Laura Duschatzky</p></div>
-                        <div class="flex items-center gap-6 p-8 bg-white rounded-lg shadow-sm"><i data-lucide="person-standing" class="w-16 h-16 text-black flex-shrink-0"></i><p class="text-xl font-semibold text-gray-900">¿Podremos sostener en las escuelas que se trata de ver al otro como <span class="font-bold">cuerpo que puede</span>?</p></div>
-                        <div class="flex items-center gap-6 p-8 bg-white rounded-lg shadow-sm"><i data-lucide="zap" class="w-16 h-16 text-black flex-shrink-0"></i><p class="text-xl font-semibold text-gray-900">¿Podremos desplegar vínculos que <span class="font-bold">habiliten y aumenten</span> nuestras potencias?</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </div>    
+            <!-- Contenedor para las presentaciones del equipo -->
+            <div class="space-y-12">
 
-        <section id="servicios" class="page-section hidden">
-            <div class="bg-white pt-24 pb-16">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center mb-16">
-                        <h2 class="font-title text-7xl md:text-8xl text-gray-900">Servicios Pedagógicos</h2>
-                        <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">Soluciones adaptadas a las necesidades únicas de cada trayectoria escolar.</p>
-                    </div>
-                    <div class="grid md:grid-cols-2 gap-16 items-center mb-16">
-                        <div class="space-y-4 text-lg">
-                            <h3 class="text-3xl font-bold text-gray-900 mb-4">Diseño de Trayectorias Educativas Específicas</h3>
-                            <p>Acompaño a familias y estudiantes que, por dificultades de aprendizaje o necesidades particulares, requieren alternativas al sistema escolar tradicional. Brindo soluciones con un acompañamiento pedagógico personalizado y acceso a un campus virtual con certificación oficial, legalizada por el Ministerio de Educación.</p>
-                            <p>Mi enfoque trasciende lo académico para construir un camino de aprendizaje adaptado a cada estudiante, respetando sus tiempos, necesidades e intereses, en colaboración con un equipo de profesionales.</p>
-                            <div class="mt-8 pt-6 border-t border-gray-200">
-                                <p class="text-gray-600 italic">"El final de la trayectoria escolar de mi hija y su ingreso a Medicina son la prueba de que, con constancia y el apoyo adecuado, se pueden sortear dificultades como la dislexia."</p>
+                <!-- Presentación 1 (Nuevo Texto) -->
+                <div class="bg-mint py-12">
+                    <div class="container mx-auto px-6">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div class="w-full max-w-md mx-auto">
+                                <img src="images/equipo-1.jpg" alt="Foto de Perfil 1" class="rounded-lg shadow-md w-full h-auto" onerror="this.onerror=null;this.src='https://placehold.co/600x700/ccc/333?text='+encodeURIComponent(this.src);">
                             </div>
-                        </div>
-                        <div class="grid grid-rows-2 gap-4">
-                            <div class="grid grid-cols-2 gap-4">
-                                <img id="servicio-img-1" alt="Foto del servicio 1" class="aspect-square w-full h-full object-cover rounded-lg shadow-md bg-gray-200">
-                                <img id="servicio-img-2" alt="Foto del servicio 2" class="aspect-square w-full h-full object-cover rounded-lg shadow-md bg-gray-200">
-                            </div>
-                            <div>
-                                <img id="servicio-img-3" alt="Foto del servicio 3" class="w-full h-full object-cover rounded-lg shadow-md bg-gray-200">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-24">
-                        <h3 class="text-4xl font-bold text-center mb-12 text-gray-900">Galería de Proyectos</h3>
-                        <div class="space-y-16">
-                            <div>
-                                <h4 class="text-3xl font-semibold text-center mb-8">Nivel Inicial - Primario</h4>
-                                <div id="gallery-primario" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                                    </div>
-                            </div>
-                            <div>
-                                <h4 class="text-3xl font-semibold text-center mb-8">Nivel Avanzado - Secundario</h4>
-                                <div id="gallery-secundario" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contacto" class="page-section hidden">
-            <div class="bg-gray-100 py-24">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center mb-16">
-                        <h2 class="font-title text-7xl md:text-8xl text-gray-900">Contacto</h2>
-                        <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">Iniciemos una conversación para construir juntos un nuevo camino.</p>
-                    </div>
-                    <div class="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-                        <div class="text-lg text-gray-700 space-y-5">
-                            <h3 class="text-3xl font-bold text-gray-900">Sobre Mí</h3>
-                            <p>Soy profesora de educación especial con 16 años de experiencia en educación en el hogar. Impulsada por el potencial del trabajo individualizado y el respeto por el ritmo de aprendizaje, me especialicé en inteligencias múltiples, diseño universal del aprendizaje (DUA) y otras pedagogías alternativas.</p>
-                            <p>Mi misión es acompañar la trayectoria educativa de cada estudiante, ayudándole a descubrir sus fortalezas y a trabajar en sus debilidades, con el apoyo de un equipo de maestras de distintas áreas.</p>
-                            <div class="mt-10 pt-8 border-t border-gray-200">
-                                <h4 class="text-2xl font-bold mb-6 text-center text-gray-900">Ponte en Contacto</h4>
-                                <div class="flex justify-center items-center space-x-8">
-                                    <a href="https://wa.me/5491152495584" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-black transition-transform duration-300 hover:scale-110" aria-label="Enviar mensaje por WhatsApp">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l-.515 1.887 1.911-.509z"/>
-                                        </svg>
-                                    </a>
-                                    <button id="open-email-modal" class="text-gray-500 hover:text-black transition-transform duration-300 hover:scale-110" aria-label="Mostrar correo electrónico">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                            <rect width="20" height="16" x="2" y="4" rx="2"/>
-                                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                                        </svg>
-                                    </button>
+                            <div class="text-left">
+                                <h3 class="font-heading text-3xl font-bold mb-6">Analia Cacciamani</h3>
+                                <div class="space-y-4 text-main/90">
+                                    <p>Soy profesora de educación especial con 16 años de experiencia en educación en el hogar. Impulsada por el potencial del trabajo individualizado y el respeto por el ritmo de aprendizaje, me especialicé en inteligencias múltiples, diseño universal del aprendizaje (DUA) y otras pedagogías alternativas.</p>
+                                    <p>Mi misión es acompañar la trayectoria educativa de cada estudiante, ayudándole a descubrir sus fortalezas y a trabajar en sus debilidades, con el apoyo de un equipo de maestras de distintas áreas.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="relative">
-                            <img src="data/Varios/image_00cbcc.png" alt="Foto de perfil de Analia Cacciamani" class="rounded-lg shadow-xl mx-auto" onerror="this.outerHTML = `<div class='w-full h-full bg-gray-200 flex items-center justify-center text-center text-sm text-gray-600 p-4 rounded-lg shadow-xl'>Error al cargar:<br>${this.src.split('/').pop()}</div>`">
+                    </div>
+                </div>
+
+                 <!-- Presentación 2 (Vanesa) -->
+                <div class="bg-alt py-12">
+                    <div class="container mx-auto px-6">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div class="md:order-2 w-full max-w-md mx-auto">
+                                <img src="images/equipo-vanesa.jpg" alt="Vanesa Vota" class="rounded-lg shadow-md w-full h-auto" onerror="this.onerror=null;this.src='https://placehold.co/600x700/ccc/333?text='+encodeURIComponent(this.src);">
+                            </div>
+                            <div class="text-left md:order-1">
+                                <h3 class="font-heading text-3xl font-bold mb-2">Vanesa Vota</h3>
+                                <p class="font-body text-accent-secondary font-semibold uppercase tracking-wider mb-6">Profesora de Inglés</p>
+                                <div class="space-y-4 text-main/90">
+                                    <p>Soy profesora de Inglés. Desde hace más de 25 años me dedico a la enseñanza del idioma atendiendo la diversidad en las distintas formas de aprender.</p>
+                                    <p>Motivada por una necesidad personal durante nuestra permanencia familiar en Nueva Zelanda en el año 2009, comencé la búsqueda de una mirada educativa alternativa que cobije el aprendizaje de mis hijos a la vera de sus propias necesidades. Así nació mi interés en las inteligencias múltiples y otros enfoques innovadores.</p>
+                                    <p>Gracias a esta experiencia, hoy abrazo la importancia de un acompañamiento pedagógico atento, cuidadoso y empático que respete el ritmo natural de cada estudiante y busque despertar su curiosidad y desplegar su potencial.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Presentación 3 (Placeholder) -->
+                <div class="bg-mint py-12">
+                    <div class="container mx-auto px-6">
+                         <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div class="w-full max-w-md mx-auto">
+                                <img src="images/equipo-3.jpg" alt="Nombre Colega 3" class="rounded-lg shadow-md w-full h-auto" onerror="this.onerror=null;this.src='https://placehold.co/600x700/ccc/333?text='+encodeURIComponent(this.src);">
+                            </div>
+                            <div class="text-left">
+                                <h3 class="font-heading text-3xl font-bold mb-2">Griselda Etchepare</h3>
+                                <p class="font-body text-accent-secondary font-semibold uppercase tracking-wider mb-6">Profesora de Matemática y Técnica en Medio Ambiente</p>
+                                <div class="space-y-4 text-main/90">
+                                    <p>Nací en San Vicente, Buenos Aires, y desde muy chica estuve en contacto con el campo. Esa cercanía con lo rural despertó en mí un profundo interés por la educación ambiental, así como el deseo de que mi labor docente tenga siempre un sentido significativo y transformador.</p>
+                                    <p>Desempeño mi trabajo en el CEPT N°33, un espacio particular donde, gracias al sistema de alternancia, es posible implementar una enseñanza orientada desde y para la vida, en estrecho vínculo con la naturaleza y con la comunidad.</p>
+                                    <p>Inspirada en las ideas de Paulo Freire, considero fundamental que el aprendizaje sea significativo y conectado con la vida cotidiana de los estudiantes. Para lograrlo, apuesto a una enseñanza personalizada que reconozca los tiempos, intereses y procesos individuales de cada joven.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
+        
+        <!-- ========== SECCIÓN CONTACTO (FOOTER) ========== -->
+        <footer id="contacto" class="page-section bg-main py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">Contacto</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto mb-16">Nos encantaría saber de vos. Escribinos para coordinar una entrevista y contarte más sobre nuestra propuesta.</p>
+                
+                <div class="max-w-4xl mx-auto bg-alt p-8 md:p-12 rounded-lg shadow-lg">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <img src="images/contacto.jpg" alt="Imagen de contacto" class="rounded-lg shadow-md w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x700/ccc/333?text='+encodeURIComponent(this.src);">
+                        </div>
+                        <div class="text-center md:text-left">
+                            <h3 class="font-heading text-2xl font-bold mb-8">Canales de Comunicación</h3>
+                            <div class="space-y-8">
+                                <a href="mailto:analiacacciamani@gmail.com" class="inline-flex items-center text-main hover:text-accent-secondary transition-colors group">
+                                   <i data-lucide="mail" class="w-8 h-8 mr-4 text-accent-secondary"></i>
+                                   <div>
+                                       <span class="font-semibold uppercase block group-hover:underline">Email</span>
+                                       <span class="text-sm">analiacacciamani@gmail.com</span>
+                                   </div>
+                                </a>
+                                <a href="https://wa.me/5491152495584" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-main hover:text-accent-secondary transition-colors group">
+                                   <i data-lucide="message-circle" class="w-8 h-8 mr-4 text-accent-secondary"></i>
+                                   <div>
+                                       <span class="font-semibold uppercase block group-hover:underline">Whatsapp</span>
+                                       <span class="text-sm">+54 9 11 5249-5584</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-20 pt-10 border-t border-alt text-center">
+                   <p class="text-gray-600 text-sm">&copy; <span id="year"></span> Cigoto. Todos los derechos reservados.</p>
+               </div>
+            </div>
+        </footer>
     </main>
 
-    <footer class="bg-gray-100 border-t border-gray-200">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-gray-600">
-            <p>&copy; <span id="copyright-year"></span> Analia Cacciamani. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons(); // Activar íconos
+            const sections = document.querySelectorAll('.page-section');
+            const navLinks = document.querySelectorAll('header a[href^="#"]');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-    <div id="email-modal" class="fixed inset-0 bg-black bg-opacity-60 z-[100] hidden items-center justify-center p-4">
-        <div class="bg-white p-8 rounded-lg shadow-2xl text-center w-full max-w-sm animated animate-fadeInUp">
-            <h3 class="text-2xl font-bold mb-4 text-gray-900">Correo Electrónico</h3>
-            <p id="email-text" class="text-lg bg-gray-100 p-3 rounded-md mb-6 text-gray-800 break-all">analiacacciamani@gmail.com</p>
-            <div class="flex justify-center space-x-4">
-                <button id="copy-email-button" class="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-300 font-semibold">Copiar</button>
-                <button id="close-modal-button" class="bg-gray-300 text-black px-6 py-2 rounded-lg hover:bg-gray-400 transition-colors duration-300 font-semibold">Cerrar</button>
-            </div>
-        </div>
-    </div>
+            // --- Lógica de Navegación SPA ---
+            const showSection = (hash) => {
+                const targetHash = (hash && hash !== '#') ? hash : '#home';
+                const targetId = targetHash.substring(1);
+                let sectionFound = false;
+                sections.forEach(section => {
+                    if (section.id === targetId) {
+                        section.classList.add('active');
+                        sectionFound = true;
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+                if (!sectionFound) {
+                    document.getElementById('home').classList.add('active');
+                }
+                if(history.pushState) {
+                    history.pushState(null, null, targetHash);
+                } else {
+                    location.hash = targetHash;
+                }
+                window.scrollTo(0, 0);
+            };
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const hash = link.getAttribute('href');
+                    showSection(hash);
+                    if (!mobileMenu.classList.contains('hidden')) {
+                         mobileMenu.classList.add('hidden');
+                         mobileMenuButton.classList.remove('open');
+                    }
+                });
+            });
 
-    <script src="js/main.js" defer></script>
+            window.addEventListener('popstate', () => {
+                showSection(window.location.hash);
+            });
+            showSection(window.location.hash);
 
+            // --- Lógica del Menú Móvil ---
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuButton.classList.toggle('open');
+            });
+            
+            // --- Script para el año actual en el footer ---
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // --- Lógica de Carrusel Genérica ---
+            const setupCarousel = (carouselId) => {
+                const carouselContainer = document.getElementById(carouselId);
+                if (carouselContainer) {
+                    const images = carouselContainer.getElementsByTagName('img');
+                    let currentImageIndex = 0;
+
+                    if (images.length > 0) {
+                        images[currentImageIndex].classList.remove('opacity-0');
+
+                        setInterval(() => {
+                            images[currentImageIndex].classList.add('opacity-0');
+                            currentImageIndex = (currentImageIndex + 1) % images.length;
+                            images[currentImageIndex].classList.remove('opacity-0');
+                        }, 2000);
+                    }
+                }
+            };
+
+            // Iniciar ambos carruseles
+            setupCarousel('image-carousel');
+            setupCarousel('services-carousel');
+        });
+    </script>
 </body>
 </html>
+

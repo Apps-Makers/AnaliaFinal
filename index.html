@@ -457,21 +457,21 @@
 
                 const showSlide = (index) => {
                     images.forEach((img, i) => {
-                        // Usamos toggle con un segundo argumento booleano para añadir/quitar la clase.
-                        // Si i !== index es true (la imagen no es la actual), añade 'opacity-0'.
-                        // Si i !== index es false (la imagen es la actual), quita 'opacity-0'.
                         img.classList.toggle('opacity-0', i !== index);
                     });
                 };
 
-                // Mostrar la primera imagen al cargar.
-                showSlide(currentIndex);
-
-                // Cambiar a la siguiente imagen en intervalos.
-                setInterval(() => {
-                    currentIndex = (currentIndex + 1) % images.length;
+                // Pequeño retraso para asegurar que el DOM está completamente listo para las transiciones.
+                setTimeout(() => {
+                    // Mostrar la primera imagen al cargar.
                     showSlide(currentIndex);
-                }, 3000); // Intervalo de 3 segundos.
+
+                    // Cambiar a la siguiente imagen en intervalos.
+                    setInterval(() => {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        showSlide(currentIndex);
+                    }, 3000); // Intervalo de 3 segundos.
+                }, 100); // Retraso de 100ms
             };
 
             // Iniciar ambos carruseles
@@ -532,3 +532,4 @@
     </script>
 </body>
 </html>
+

@@ -474,7 +474,7 @@
                 if (event.target.tagName.toLowerCase() !== 'img') return;
                 
                 const img = event.target;
-                const currentSrc = img.getAttribute('src');
+                const currentSrc = img.src; // Usamos .src que es la URL absoluta que falló
 
                 // Evitar bucles infinitos con el placeholder
                 if (currentSrc.includes('placehold.co')) return;
@@ -482,14 +482,16 @@
                 const showErrorPlaceholder = () => {
                     const width = img.offsetWidth > 0 ? img.offsetWidth : 600;
                     const height = img.offsetHeight > 0 ? img.offsetHeight : 400;
-                    // Usamos colores del tema para consistencia visual
-                    img.src = `https://placehold.co/${width}x${height}/E7D9C7/1B4D3E?text=Imagen no encontrada`;
-                    console.warn(`No se pudo cargar la imagen original ni su alternativa: ${img.dataset.originalSrc || currentSrc}`);
+                    const originalSrcPath = img.dataset.originalSrc || img.getAttribute('src'); // Leemos el atributo original
+                    
+                    // Corregido: No codificar el prefijo "Ruta: "
+                    img.src = `https://placehold.co/${width}x${height}/E7D9C7/1B4D3E?text=Ruta: ${encodeURIComponent(originalSrcPath)}`;
+                    console.warn(`No se pudo cargar la imagen: ${originalSrcPath}`);
                 };
 
                 // Almacenamos la ruta original en el primer intento
                 if (!img.dataset.originalSrc) {
-                    img.dataset.originalSrc = currentSrc;
+                    img.dataset.originalSrc = img.getAttribute('src');
                 }
 
                 // Si ya hemos intentado un fallback, mostramos el placeholder

@@ -408,6 +408,7 @@
     </div>
 
     <script>
+        // --- Lógica de la Interfaz (Menú, Navegación, Modal) ---
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons(); // Activar íconos
             const sections = document.querySelectorAll('.page-section');
@@ -465,46 +466,9 @@
             // --- Script para el año actual en el footer ---
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            // --- Lógica de Carrusel Genérica ---
-            const setupCarousel = (carouselId) => {
-                const carouselContainer = document.getElementById(carouselId);
-                if (!carouselContainer) return;
-                const images = Array.from(carouselContainer.getElementsByTagName('img'));
-                if (images.length === 0) return;
-
-                let currentIndex = 0;
-
-                const showSlide = (index) => {
-                    images.forEach((img, i) => {
-                        img.classList.toggle('opacity-0', i !== index);
-                    });
-                };
-                
-                // Mostrar la primera imagen al cargar.
-                showSlide(currentIndex);
-
-                // Cambiar a la siguiente imagen en intervalos.
-                setInterval(() => {
-                    currentIndex = (currentIndex + 1) % images.length;
-                    showSlide(currentIndex);
-                }, 3000); // Intervalo de 3 segundos.
-            };
-
-            // Iniciar carruseles cuando todo (incluyendo imágenes) esté cargado
-            // para evitar problemas de "race condition" con la primera imagen.
-            if (document.readyState === 'complete') {
-                setupCarousel('image-carousel');
-                setupCarousel('services-carousel');
-            } else {
-                window.addEventListener('load', () => {
-                    setupCarousel('image-carousel');
-                    setupCarousel('services-carousel');
-                });
-            }
-
             // --- Lógica del Modal de Email ---
             const emailModal = document.getElementById('email-modal');
-            const modalContent = emailModal.querySelector('div'); // Selector para el contenido del modal
+            const modalContent = emailModal.querySelector('div');
             const emailButton = document.getElementById('email-button');
             const copyEmailBtn = document.getElementById('copy-email-btn');
             const cancelCopyBtn = document.getElementById('cancel-copy-btn');
@@ -515,7 +479,7 @@
                 setTimeout(() => {
                     emailModal.classList.remove('opacity-0');
                     modalContent.classList.remove('scale-95', 'opacity-0');
-                }, 10); // Pequeño delay para que la transición se aplique
+                }, 10);
             };
 
             const closeModal = () => {
@@ -523,30 +487,25 @@
                 modalContent.classList.add('scale-95', 'opacity-0');
                 setTimeout(() => {
                     emailModal.classList.add('hidden');
-                    // Resetear el estado del botón de copiar
                     copyEmailBtn.textContent = 'Copiar';
                     copyEmailBtn.disabled = false;
-                }, 300); // Coincide con la duración de la transición en CSS
+                }, 300);
             };
 
             emailButton.addEventListener('click', openModal);
             cancelCopyBtn.addEventListener('click', closeModal);
             emailModal.addEventListener('click', (event) => {
-                if (event.target === emailModal) {
-                    closeModal();
-                }
+                if (event.target === emailModal) closeModal();
             });
             document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && !emailModal.classList.contains('hidden')) {
-                    closeModal();
-                }
+                if (event.key === 'Escape' && !emailModal.classList.contains('hidden')) closeModal();
             });
 
             copyEmailBtn.addEventListener('click', () => {
                 const text = emailToCopy.textContent;
                 const textArea = document.createElement('textarea');
                 textArea.value = text;
-                textArea.style.position = 'absolute';
+                textArea.style.position = 'fixed';
                 textArea.style.left = '-9999px';
                 document.body.appendChild(textArea);
                 textArea.select();
@@ -565,17 +524,13 @@
             // --- Lógica Global para Errores de Imagen (JPG/PNG Fallback) ---
             document.addEventListener('error', function (event) {
                 if (event.target.tagName.toLowerCase() !== 'img') return;
-                
                 const img = event.target;
-                const currentSrc = img.src; 
-
-                if (currentSrc.includes('placehold.co')) return;
+                if (img.src.includes('placehold.co')) return;
                 
                 const showErrorPlaceholder = () => {
                     const width = img.offsetWidth > 0 ? img.offsetWidth : 600;
                     const height = img.offsetHeight > 0 ? img.offsetHeight : 400;
                     const originalSrcPath = img.dataset.originalSrc || img.getAttribute('src');
-                    
                     img.src = `https://placehold.co/${width}x${height}/E7D9C7/1B4D3E?text=Ruta: ${encodeURIComponent(originalSrcPath)}`;
                     console.warn(`No se pudo cargar la imagen: ${originalSrcPath}`);
                 };
@@ -583,17 +538,14 @@
                 if (!img.dataset.originalSrc) {
                     img.dataset.originalSrc = img.getAttribute('src');
                 }
-
                 if (img.dataset.fallbackTried === 'true') {
                     showErrorPlaceholder();
                     return;
                 }
-
                 img.dataset.fallbackTried = 'true';
 
-                let fallbackSrc;
                 const originalPath = img.dataset.originalSrc;
-
+                let fallbackSrc;
                 if (originalPath.toLowerCase().endsWith('.jpg')) {
                     fallbackSrc = originalPath.replace(/\.jpg$/i, '.png');
                 } else if (originalPath.toLowerCase().endsWith('.png')) {
@@ -602,12 +554,34 @@
                     showErrorPlaceholder();
                     return;
                 }
-                
                 img.src = fallbackSrc;
-
             }, true);
+        });
+
+        // --- Lógica del Carrusel (Se ejecuta después de que todo cargue) ---
+        window.addEventListener('load', () => {
+            const setupCarousel = (carouselId) => {
+                const carouselContainer = document.getElementById(carouselId);
+                if (!carouselContainer) return;
+                const images = Array.from(carouselContainer.getElementsByTagName('img'));
+                if (images.length < 2) {
+                    if (images.length === 1) images[0].classList.remove('opacity-0');
+                    return;
+                }
+
+                let currentIndex = 0;
+                images[currentIndex].classList.remove('opacity-0'); // Muestra la primera imagen
+
+                setInterval(() => {
+                    images[currentIndex].classList.add('opacity-0'); // Oculta la actual
+                    currentIndex = (currentIndex + 1) % images.length; // Calcula la siguiente
+                    images[currentIndex].classList.remove('opacity-0'); // Muestra la siguiente
+                }, 3000);
+            };
+
+            setupCarousel('image-carousel');
+            setupCarousel('services-carousel');
         });
     </script>
 </body>
 </html>
-

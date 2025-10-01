@@ -138,7 +138,7 @@
 
             <!-- Full-width Carousel Container -->
             <div id="image-carousel" class="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px] overflow-hidden bg-alt">
-                <img src="images/home-carousel-1.jpg" alt="Enseñanza personalizada" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                <img src="images/home-carousel-1.jpg" alt="Enseñanza personalizada" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out">
                 <img src="images/home-carousel-2.jpg" alt="Todas las materias" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
                 <img src="images/home-carousel-3.jpg" alt="Apoyo escolar" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
                 <img src="images/home-carousel-4.jpg" alt="Proyectos de inclusión" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
@@ -183,7 +183,7 @@
 
                 <!-- Carousel de Imágenes para Servicios -->
                 <div id="services-carousel" class="relative w-full max-w-4xl mx-auto h-64 sm:h-80 md:h-96 lg:h-[450px] overflow-hidden bg-alt rounded-lg shadow-lg mb-16">
-                    <img src="images/services-carousel-1.jpg" alt="Aprendizaje Diverso" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                    <img src="images/services-carousel-1.jpg" alt="Aprendizaje Diverso" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out">
                     <img src="images/services-carousel-2.jpg" alt="Enfoque en Posibilidades" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
                     <img src="images/services-carousel-3.jpg" alt="Maestras Mediadoras" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
                 </div>
@@ -563,19 +563,17 @@
             const setupCarousel = (carouselId) => {
                 const carouselContainer = document.getElementById(carouselId);
                 if (!carouselContainer) return;
+
                 const images = Array.from(carouselContainer.getElementsByTagName('img'));
-                if (images.length < 2) {
-                    if (images.length === 1) images[0].classList.remove('opacity-0');
-                    return;
-                }
+                if (images.length < 2) return; // No hace falta carrusel si hay 1 o 0 imágenes
 
                 let currentIndex = 0;
-                images[currentIndex].classList.remove('opacity-0'); // Muestra la primera imagen
+                // La primera imagen ya es visible por defecto gracias al HTML
 
                 setInterval(() => {
-                    images[currentIndex].classList.add('opacity-0'); // Oculta la actual
-                    currentIndex = (currentIndex + 1) % images.length; // Calcula la siguiente
-                    images[currentIndex].classList.remove('opacity-0'); // Muestra la siguiente
+                    images[currentIndex].classList.add('opacity-0'); // Oculta la imagen actual
+                    currentIndex = (currentIndex + 1) % images.length; // Calcula el índice de la siguiente
+                    images[currentIndex].classList.remove('opacity-0'); // Muestra la siguiente imagen
                 }, 3000);
             };
 

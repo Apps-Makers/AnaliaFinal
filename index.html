@@ -285,8 +285,7 @@
                 </div>
             </div>      
             <!-- Contenedor para las presentaciones del equipo -->
-            <div class="space-y-12">
-
+            <div>
                 <!-- Presentación 1 (Nuevo Texto) -->
                 <div class="bg-mint py-12">
                     <div class="container mx-auto px-6">
@@ -348,8 +347,8 @@
             </div>
         </section>
         
-        <!-- ========== SECCIÓN CONTACTO (FOOTER) ========== -->
-        <footer id="contacto" class="page-section bg-main py-20">
+        <!-- ========== SECCIÓN CONTACTO ========== -->
+        <section id="contacto" class="page-section bg-main py-20">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">Contacto</h2>
                 <p class="text-gray-700 max-w-2xl mx-auto mb-16">Nos encantaría saber de vos. Escribinos para coordinar una entrevista y contarte más sobre nuestra propuesta.</p>
@@ -362,13 +361,13 @@
                         <div class="text-center md:text-left">
                             <h3 class="font-heading text-2xl font-bold mb-8">Canales de Comunicación</h3>
                             <div class="space-y-8">
-                                <a href="mailto:analiacacciamani@gmail.com" class="inline-flex items-center text-main hover:text-accent-secondary transition-colors group">
+                                <div id="email-button" class="inline-flex items-center text-main hover:text-accent-secondary transition-colors group cursor-pointer">
                                    <i data-lucide="mail" class="w-8 h-8 mr-4 text-accent-secondary"></i>
                                    <div>
                                        <span class="font-semibold uppercase block group-hover:underline">Email</span>
                                        <span class="text-sm">analiacacciamani@gmail.com</span>
                                    </div>
-                                </a>
+                                </div>
                                 <a href="https://wa.me/5491152495584" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-main hover:text-accent-secondary transition-colors group">
                                    <i data-lucide="message-circle" class="w-8 h-8 mr-4 text-accent-secondary"></i>
                                    <div>
@@ -380,13 +379,33 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="mt-20 pt-10 border-t border-alt text-center">
+        <!-- ========== FOOTER ========== -->
+        <footer class="bg-main pb-10">
+            <div class="container mx-auto px-6 text-center">
+                <div class="pt-10 border-t border-alt">
                    <p class="text-gray-600 text-sm">&copy; <span id="year"></span> Cigoto. Todos los derechos reservados.</p>
                </div>
             </div>
         </footer>
     </main>
+
+    <!-- ========== MODAL PARA COPIAR EMAIL ========== -->
+    <div id="email-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[100] flex justify-center items-center p-4 transition-opacity duration-300 ease-in-out opacity-0">
+        <div class="bg-main p-8 rounded-lg shadow-2xl max-w-sm w-full text-center transform transition-all duration-300 ease-in-out scale-95 opacity-0">
+            <h4 class="font-heading text-xl mb-2">Copiar Email</h4>
+            <p class="text-gray-700 mb-6">Hacé click para guardar la dirección en tu portapapeles.</p>
+            <div class="bg-alt p-3 rounded-md mb-6">
+                <span id="email-to-copy" class="font-mono text-main break-all">analiacacciamani@gmail.com</span>
+            </div>
+            <div class="flex justify-center space-x-4">
+                <button id="cancel-copy-btn" class="px-6 py-2 bg-gray-300 hover:bg-gray-400 rounded-md text-gray-800 font-semibold uppercase text-sm tracking-wider">Cancelar</button>
+                <button id="copy-email-btn" class="px-6 py-2 bg-accent-secondary hover:bg-opacity-90 rounded-md text-white font-semibold uppercase text-sm tracking-wider w-28">Copiar</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -478,37 +497,93 @@
             setupCarousel('image-carousel');
             setupCarousel('services-carousel');
 
+            // --- Lógica del Modal de Email ---
+            const emailModal = document.getElementById('email-modal');
+            const modalContent = emailModal.querySelector('div'); // Selector para el contenido del modal
+            const emailButton = document.getElementById('email-button');
+            const copyEmailBtn = document.getElementById('copy-email-btn');
+            const cancelCopyBtn = document.getElementById('cancel-copy-btn');
+            const emailToCopy = document.getElementById('email-to-copy');
+
+            const openModal = () => {
+                emailModal.classList.remove('hidden');
+                setTimeout(() => {
+                    emailModal.classList.remove('opacity-0');
+                    modalContent.classList.remove('scale-95', 'opacity-0');
+                }, 10); // Pequeño delay para que la transición se aplique
+            };
+
+            const closeModal = () => {
+                emailModal.classList.add('opacity-0');
+                modalContent.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    emailModal.classList.add('hidden');
+                    // Resetear el estado del botón de copiar
+                    copyEmailBtn.textContent = 'Copiar';
+                    copyEmailBtn.disabled = false;
+                }, 300); // Coincide con la duración de la transición en CSS
+            };
+
+            emailButton.addEventListener('click', openModal);
+            cancelCopyBtn.addEventListener('click', closeModal);
+            emailModal.addEventListener('click', (event) => {
+                if (event.target === emailModal) {
+                    closeModal();
+                }
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && !emailModal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+
+            copyEmailBtn.addEventListener('click', () => {
+                const text = emailToCopy.textContent;
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'absolute';
+                textArea.style.left = '-9999px';
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    copyEmailBtn.textContent = '¡Copiado!';
+                    copyEmailBtn.disabled = true;
+                    setTimeout(closeModal, 1500);
+                } catch (err) {
+                    console.error('No se pudo copiar el texto: ', err);
+                    copyEmailBtn.textContent = 'Error';
+                }
+                document.body.removeChild(textArea);
+            });
+
             // --- Lógica Global para Errores de Imagen (JPG/PNG Fallback) ---
             document.addEventListener('error', function (event) {
                 if (event.target.tagName.toLowerCase() !== 'img') return;
                 
                 const img = event.target;
-                const currentSrc = img.src; // Usamos .src que es la URL absoluta que falló
+                const currentSrc = img.src; 
 
-                // Evitar bucles infinitos con el placeholder
                 if (currentSrc.includes('placehold.co')) return;
                 
                 const showErrorPlaceholder = () => {
                     const width = img.offsetWidth > 0 ? img.offsetWidth : 600;
                     const height = img.offsetHeight > 0 ? img.offsetHeight : 400;
-                    const originalSrcPath = img.dataset.originalSrc || img.getAttribute('src'); // Leemos el atributo original
+                    const originalSrcPath = img.dataset.originalSrc || img.getAttribute('src');
                     
                     img.src = `https://placehold.co/${width}x${height}/E7D9C7/1B4D3E?text=Ruta: ${encodeURIComponent(originalSrcPath)}`;
                     console.warn(`No se pudo cargar la imagen: ${originalSrcPath}`);
                 };
 
-                // Almacenamos la ruta original en el primer intento
                 if (!img.dataset.originalSrc) {
                     img.dataset.originalSrc = img.getAttribute('src');
                 }
 
-                // Si ya hemos intentado un fallback, mostramos el placeholder
                 if (img.dataset.fallbackTried === 'true') {
                     showErrorPlaceholder();
                     return;
                 }
 
-                // Marcamos que vamos a intentar un fallback
                 img.dataset.fallbackTried = 'true';
 
                 let fallbackSrc;
@@ -519,17 +594,14 @@
                 } else if (originalPath.toLowerCase().endsWith('.png')) {
                     fallbackSrc = originalPath.replace(/\.png$/i, '.jpg');
                 } else {
-                    // Si no es un formato que manejamos, ir directo al placeholder
                     showErrorPlaceholder();
                     return;
                 }
                 
-                // Intentamos cargar la imagen alternativa
                 img.src = fallbackSrc;
 
-            }, true); // Usa 'capturing' para atrapar el error antes de que se propague.
+            }, true);
         });
     </script>
 </body>
 </html>
-

@@ -479,23 +479,28 @@
                         img.classList.toggle('opacity-0', i !== index);
                     });
                 };
+                
+                // Mostrar la primera imagen al cargar.
+                showSlide(currentIndex);
 
-                // Pequeño retraso para asegurar que el DOM está completamente listo para las transiciones.
-                setTimeout(() => {
-                    // Mostrar la primera imagen al cargar.
+                // Cambiar a la siguiente imagen en intervalos.
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % images.length;
                     showSlide(currentIndex);
-
-                    // Cambiar a la siguiente imagen en intervalos.
-                    setInterval(() => {
-                        currentIndex = (currentIndex + 1) % images.length;
-                        showSlide(currentIndex);
-                    }, 3000); // Intervalo de 3 segundos.
-                }, 100); // Retraso de 100ms
+                }, 3000); // Intervalo de 3 segundos.
             };
 
-            // Iniciar ambos carruseles
-            setupCarousel('image-carousel');
-            setupCarousel('services-carousel');
+            // Iniciar carruseles cuando todo (incluyendo imágenes) esté cargado
+            // para evitar problemas de "race condition" con la primera imagen.
+            if (document.readyState === 'complete') {
+                setupCarousel('image-carousel');
+                setupCarousel('services-carousel');
+            } else {
+                window.addEventListener('load', () => {
+                    setupCarousel('image-carousel');
+                    setupCarousel('services-carousel');
+                });
+            }
 
             // --- Lógica del Modal de Email ---
             const emailModal = document.getElementById('email-modal');
@@ -605,3 +610,4 @@
     </script>
 </body>
 </html>
+

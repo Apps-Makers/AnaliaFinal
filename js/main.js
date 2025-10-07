@@ -1,58 +1,47 @@
 document.addEventListener('DOMContentLoaded', function() {
     // --- Lógica para reemplazar imágenes rotas ---
     document.addEventListener('error', function(event) {
-        // Asegurarse de que el error provenga de una etiqueta de imagen (<img>)
-        if (event.target.tagName.toLowerCase() !== 'img') {
-            return;
-        }
-
+        if (event.target.tagName.toLowerCase() !== 'img') return;
         const img = event.target;
-
-        // Prevenir un bucle infinito si la imagen de reemplazo (box.png) tampoco se encuentra
-        if (img.dataset.fallbackApplied === 'true') {
-            return;
-        }
-        
+        if (img.dataset.fallbackApplied === 'true') return;
         img.dataset.fallbackApplied = 'true';
         img.src = 'images/box.png';
+    }, true);
 
-    }, true); // Usar "true" para capturar el evento en la fase de captura
-
-    // --- Código existente que ya funcionaba ---
     lucide.createIcons();
     const sections = document.querySelectorAll('.page-section');
-    const navLinks = document.querySelectorAll('header a[href^="#"]');
+    const navLinks = document.querySelectorAll('header a[href^="/"]');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    const showSection = (hash) => {
-        const targetHash = (hash && hash !== '#') ? hash : '#home';
-        const targetId = targetHash.substring(1);
-        let sectionFound = false;
+    const showSection = (path) => {
+        // Convierte la ruta (ej. "/servicios") en un ID (ej. "servicios")
+        const targetId = path === '/' ? 'home' : path.substring(1);
+        
         sections.forEach(section => {
             if (section.id === targetId) {
                 section.classList.add('active');
-                sectionFound = true;
             } else {
                 section.classList.remove('active');
             }
         });
-        if (!sectionFound) {
-            document.getElementById('home').classList.add('active');
-        }
-        if (history.pushState) {
-            history.pushState(null, null, targetHash);
-        } else {
-            location.hash = targetHash;
-        }
         window.scrollTo(0, 0);
+    };
+
+    const handleNavigation = (path) => {
+        showSection(path);
+        // Usa la History API para cambiar la URL sin recargar la página
+        history.pushState({path: path}, '', path);
     };
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
+            // Evita que el navegador recargue la página
             e.preventDefault();
-            const hash = link.getAttribute('href');
-            showSection(hash);
+            const path = link.getAttribute('href');
+            handleNavigation(path);
+            
+            // Cierra el menú móvil si está abierto
             if (!mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
                 mobileMenuButton.classList.remove('open');
@@ -60,11 +49,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    window.addEventListener('popstate', () => {
-        showSection(window.location.hash);
+    // Maneja los botones de "atrás" y "adelante" del navegador
+    window.addEventListener('popstate', (e) => {
+        showSection(window.location.pathname);
     });
-    showSection(window.location.hash);
 
+    // Muestra la sección correcta al cargar la página por primera vez o al refrescar
+    showSection(window.location.pathname);
+
+    // --- Código existente que no necesita cambios ---
     mobileMenuButton.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
         mobileMenuButton.classList.toggle('open');
@@ -107,8 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     copyEmailBtn.addEventListener('click', () => {
-        const text = emailToCopy.textContent;
-        navigator.clipboard.writeText(text).then(() => {
+        navigator.clipboard.writeText(emailToCopy.textContent).then(() => {
             copyEmailBtn.textContent = '¡Copiado!';
             copyEmailBtn.disabled = true;
             setTimeout(closeModal, 1500);
@@ -118,33 +110,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- CÓDIGO DEL CARROUSEL MEJORADO ---
     const setupCarousel = (carouselId) => {
         const carouselContainer = document.getElementById(carouselId);
         if (!carouselContainer) return;
-
         const images = Array.from(carouselContainer.getElementsByTagName('img'));
         if (images.length < 2) return;
-
         let currentIndex = 0;
-
-        // Asegurarse de que la primera imagen sea visible inmediatamente.
         images.forEach((img, index) => {
-            if (index === 0) {
-                img.classList.remove('opacity-0');
-            } else {
-                img.classList.add('opacity-0');
-            }
+            img.classList.toggle('opacity-0', index !== 0);
         });
-
-        // Iniciar el intervalo para cambiar las imágenes.
         setInterval(() => {
             images[currentIndex].classList.add('opacity-0');
             currentIndex = (currentIndex + 1) % images.length;
             images[currentIndex].classList.remove('opacity-0');
         }, 4000);
     };
-
-    // Iniciar el carrusel
     setupCarousel('image-carousel');
 });

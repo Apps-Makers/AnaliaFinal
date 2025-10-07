@@ -1,166 +1,160 @@
-// /mi-proyecto/js/main.js
-
-// --- SCRIPT PARA ICONOS DE LUCIDE ---
-lucide.createIcons();
-
-// --- SCRIPT PARA EL AÑO DEL COPYRIGHT ---
-document.getElementById('copyright-year').textContent = new Date().getFullYear();
-
-// --- SCRIPT PARA EL MENÚ MÓVIL ---
-const mobileMenuButton = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
-mobileMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-});
-
-// --- SCRIPT PARA LA NAVEGACIÓN POR PESTAÑAS ---
-const navLinks = document.querySelectorAll('.nav-link');
-const pageSections = document.querySelectorAll('.page-section');
-const navLinkButtons = document.querySelectorAll('.nav-link-button');
-
-function showTab(targetId) {
-    pageSections.forEach(section => {
-        if (section.id === targetId) {
-            section.classList.remove('hidden');
-            section.classList.add('animate-fadeIn');
-        } else {
-            section.classList.add('hidden');
-            section.classList.remove('animate-fadeIn');
-        }
-    });
-
-    // Actualizar estado activo en enlaces de navegación
-    navLinks.forEach(link => {
-        link.classList.toggle('active', link.dataset.target === targetId);
-    });
-    
-    // Ocultar menú móvil después de la selección
-    mobileMenu.classList.add('hidden');
-    window.scrollTo(0, 0);
+document.addEventListener('DOMContentLoaded', function() {
     lucide.createIcons();
-}
+    const sections = document.querySelectorAll('.page-section');
+    const navLinks = document.querySelectorAll('header a[href^="#"]');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-// Event listeners para enlaces de navegación
-navLinks.forEach(link => {
-    link.addEventListener('click', function(event) {
-        event.preventDefault();
-        const targetId = this.dataset.target;
-        if (targetId) {
-            showTab(targetId);
-        }
-    });
-});
-
-// Event listeners para botones que también son enlaces de navegación
-navLinkButtons.forEach(button => {
-    button.addEventListener('click', function(event) {
-        event.preventDefault();
-        const targetId = this.dataset.target;
-        if (targetId) {
-            showTab(targetId);
-        }
-    });
-});
-
-// --- SCRIPT PARA EL MODAL DE EMAIL ---
-const emailModal = document.getElementById('email-modal');
-const openEmailModalButton = document.getElementById('open-email-modal');
-const closeModalButton = document.getElementById('close-modal-button');
-const copyEmailButton = document.getElementById('copy-email-button');
-const emailText = document.getElementById('email-text').textContent;
-
-openEmailModalButton.addEventListener('click', () => {
-    emailModal.classList.remove('hidden');
-    emailModal.classList.add('flex');
-});
-
-closeModalButton.addEventListener('click', () => {
-    emailModal.classList.add('hidden');
-    emailModal.classList.remove('flex');
-});
-
-// Cerrar modal al hacer clic fuera de él
-emailModal.addEventListener('click', (event) => {
-    if (event.target === emailModal) {
-        emailModal.classList.add('hidden');
-        emailModal.classList.remove('flex');
-    }
-});
-
-copyEmailButton.addEventListener('click', () => {
-    navigator.clipboard.writeText(emailText).then(() => {
-        copyEmailButton.textContent = '¡Copiado!';
-        setTimeout(() => {
-            copyEmailButton.textContent = 'Copiar';
-        }, 2000);
-    });
-});
-
-// --- SCRIPT PARA LAS IMÁGENES ---
-// Función para intentar cargar una imagen con varias extensiones
-const tryLoadImage = (container, basePath, extensions) => {
-    const originalSrc = basePath + '.' + extensions[0]; // Para el mensaje de error
-    
-    const tryNextExtension = (index) => {
-        if (index >= extensions.length) {
-            // Si se probaron todas las extensiones y ninguna funcionó
-            const errorDiv = document.createElement('div');
-            errorDiv.className = container.className.replace('object-cover', '') + ' bg-gray-200 flex items-center justify-center shadow-sm text-center text-xs text-gray-500 p-2';
-            errorDiv.innerHTML = `Error:<br>${originalSrc.split('/').pop()}`;
-            if(container.parentNode) {
-                container.parentNode.replaceChild(errorDiv, container);
+    const showSection = (hash) => {
+        const targetHash = (hash && hash !== '#') ? hash : '#home';
+        const targetId = targetHash.substring(1);
+        let sectionFound = false;
+        sections.forEach(section => {
+            if (section.id === targetId) {
+                section.classList.add('active');
+                sectionFound = true;
+            } else {
+                section.classList.remove('active');
             }
-            return;
+        });
+        if (!sectionFound) {
+            document.getElementById('home').classList.add('active');
         }
+        if(history.pushState) {
+            history.pushState(null, null, targetHash);
+        } else {
+            location.hash = targetHash;
+        }
+        window.scrollTo(0, 0);
+    };
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const hash = link.getAttribute('href');
+            showSection(hash);
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.classList.remove('open');
+            }
+        });
+    });
 
-        const path = basePath + '.' + extensions[index];
-        const tempImg = new Image();
-        tempImg.src = path;
-        
-        tempImg.onload = () => {
-            // La imagen existe, la asignamos al elemento img real
-            container.src = path;
-        };
-        
-        tempImg.onerror = () => {
-            // La imagen no existe, probamos la siguiente extensión
-            tryNextExtension(index + 1);
-        };
+    window.addEventListener('popstate', () => {
+        showSection(window.location.hash);
+    });
+    showSection(window.location.hash);
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenuButton.classList.toggle('open');
+    });
+    
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const emailModal = document.getElementById('email-modal');
+    const modalContent = emailModal.querySelector('div');
+    const emailButton = document.getElementById('email-button');
+    const copyEmailBtn = document.getElementById('copy-email-btn');
+    const cancelCopyBtn = document.getElementById('cancel-copy-btn');
+    const emailToCopy = document.getElementById('email-to-copy');
+
+    const openModal = () => {
+        emailModal.classList.remove('hidden');
+        setTimeout(() => {
+            emailModal.classList.remove('opacity-0');
+            modalContent.classList.remove('scale-95', 'opacity-0');
+        }, 10);
     };
 
-    tryNextExtension(0);
-};
+    const closeModal = () => {
+        emailModal.classList.add('opacity-0');
+        modalContent.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+            emailModal.classList.add('hidden');
+            copyEmailBtn.textContent = 'Copiar';
+            copyEmailBtn.disabled = false;
+        }, 300);
+    };
 
-function setupGallery(galleryId, imagePaths) {
-    const gallery = document.getElementById(galleryId);
-    if (!gallery) return;
-
-    imagePaths.forEach(basePath => {
-        const img = document.createElement('img');
-        img.alt = `Proyecto de ${galleryId.includes('primario') ? 'Nivel Primario' : 'Nivel Secundario'}`;
-        img.className = 'aspect-square w-full h-full object-cover rounded-lg shadow-sm bg-gray-200';
-        tryLoadImage(img, basePath, ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']);
-        gallery.appendChild(img);
+    emailButton.addEventListener('click', openModal);
+    cancelCopyBtn.addEventListener('click', closeModal);
+    emailModal.addEventListener('click', (event) => {
+        if (event.target === emailModal) closeModal();
     });
-}
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !emailModal.classList.contains('hidden')) closeModal();
+    });
 
-// Crear listas de imágenes sin extensión (con la nueva ruta)
-const primarioImages = Array.from({ length: 16 }, (_, i) => `data/Primario/foto${i + 1}`);
-const secundarioImages = Array.from({ length: 8 }, (_, i) => `data/Secundario/foto${i + 1}`);
+    copyEmailBtn.addEventListener('click', () => {
+        const text = emailToCopy.textContent;
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            copyEmailBtn.textContent = '¡Copiado!';
+            copyEmailBtn.disabled = true;
+            setTimeout(closeModal, 1500);
+        } catch (err) {
+            console.error('No se pudo copiar el texto: ', err);
+            copyEmailBtn.textContent = 'Error';
+        }
+        document.body.removeChild(textArea);
+    });
 
-// Inicializar galerías
-setupGallery('gallery-primario', primarioImages);
-setupGallery('gallery-secundario', secundarioImages);
+    document.addEventListener('error', function (event) {
+        if (event.target.tagName.toLowerCase() !== 'img') return;
+        const img = event.target;
+        if (img.src.includes('placehold.co')) return;
+        
+        const showErrorPlaceholder = () => {
+            const width = img.offsetWidth > 0 ? img.offsetWidth : 600;
+            const height = img.offsetHeight > 0 ? img.offsetHeight : 400;
+            const originalSrcPath = img.dataset.originalSrc || img.getAttribute('src');
+            img.src = `https://placehold.co/${width}x${height}/E7D9C7/1B4D3E?text=Ruta: ${encodeURIComponent(originalSrcPath)}`;
+            console.warn(`No se pudo cargar la imagen: ${originalSrcPath}`);
+        };
 
-// Inicializar imágenes individuales (con la nueva ruta)
-const servicioImg1 = document.getElementById('servicio-img-1');
-if(servicioImg1) tryLoadImage(servicioImg1, 'data/Servicios/foto_arriba_1', ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']);
+        if (!img.dataset.originalSrc) {
+            img.dataset.originalSrc = img.getAttribute('src');
+        }
+        if (img.dataset.fallbackTried === 'true') {
+            showErrorPlaceholder();
+            return;
+        }
+        img.dataset.fallbackTried = 'true';
 
-const servicioImg2 = document.getElementById('servicio-img-2');
-if(servicioImg2) tryLoadImage(servicioImg2, 'data/Servicios/foto_arriba_2', ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']);
+        const originalPath = img.dataset.originalSrc;
+        let fallbackSrc;
+        if (originalPath.toLowerCase().endsWith('.jpg')) {
+            fallbackSrc = originalPath.replace(/\.jpg$/i, '.png');
+        } else if (originalPath.toLowerCase().endsWith('.png')) {
+            fallbackSrc = originalPath.replace(/\.png$/i, '.jpg');
+        } else {
+            showErrorPlaceholder();
+            return;
+        }
+        img.src = fallbackSrc;
+    }, true);
+});
 
-const servicioImg3 = document.getElementById('servicio-img-3');
-if(servicioImg3) tryLoadImage(servicioImg3, 'data/Servicios/foto_abajo_grande', ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']);
+window.addEventListener('load', () => {
+    const setupCarousel = (carouselId) => {
+        const carouselContainer = document.getElementById(carouselId);
+        if (!carouselContainer) return;
+        const images = Array.from(carouselContainer.getElementsByTagName('img'));
+        if (images.length < 2) return;
+        let currentIndex = 0;
+        setInterval(() => {
+            images[currentIndex].classList.add('opacity-0');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.remove('opacity-0');
+        }, 3000);
+    };
+    setupCarousel('image-carousel');
+});
 
-// Mostrar la pestaña de inicio por defecto
-showTab('inicio');

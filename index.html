@@ -66,16 +66,16 @@
 
     <header id="header" class="sticky top-0 z-50 bg-main/80 backdrop-blur-md shadow-sm">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-             <a href="#home" class="flex items-center space-x-4">
+             <a href="/" class="flex items-center space-x-4">
                  <img src="images/logo.png" alt="Logo de Cigoto Espacio Educativo" class="w-12 h-12 rounded-full">
                  <span class="font-heading text-3xl font-bold text-main">Cigoto</span>
              </a>
              <ul id="desktop-menu" class="hidden lg:flex items-center space-x-8 text-sm tracking-wider ml-12">
-                 <li><a href="#home" class="text-main hover:text-accent-secondary">INICIO</a></li>
-                 <li><a href="#servicios" class="text-main hover:text-accent-secondary">SERVICIOS</a></li>
-                 <li><a href="#proyecto" class="text-main hover:text-accent-secondary whitespace-nowrap">PROPUESTA PEDAGÓGICA</a></li>
-                 <li><a href="#educadores" class="text-main hover:text-accent-secondary whitespace-nowrap">NUESTRO EQUIPO</a></li>
-                 <li><a href="#contacto" class="text-main hover:text-accent-secondary">CONTACTO</a></li>
+                 <li><a href="/" class="text-main hover:text-accent-secondary">INICIO</a></li>
+                 <li><a href="/servicios" class="text-main hover:text-accent-secondary">SERVICIOS</a></li>
+                 <li><a href="/proyecto" class="text-main hover:text-accent-secondary whitespace-nowrap">PROPUESTA PEDAGÓGICA</a></li>
+                 <li><a href="/educadores" class="text-main hover:text-accent-secondary whitespace-nowrap">NUESTRO EQUIPO</a></li>
+                 <li><a href="/contacto" class="text-main hover:text-accent-secondary">CONTACTO</a></li>
              </ul>
              <button id="mobile-menu-button" class="lg:hidden text-main focus:outline-none hamburger">
                  <div class="w-6 h-6 flex flex-col justify-around">
@@ -86,11 +86,11 @@
              </button>
         </nav>
         <div id="mobile-menu" class="hidden lg:hidden bg-main text-center">
-             <a href="#home" class="block py-3 px-6 text-sm text-main hover:bg-alt">INICIO</a>
-             <a href="#servicios" class="block py-3 px-6 text-sm text-main hover:bg-alt">SERVICIOS</a>
-             <a href="#proyecto" class="block py-3 px-6 text-sm text-main hover:bg-alt">PROPUESTA PEDAGÓGICA</a>
-             <a href="#educadores" class="block py-3 px-6 text-sm text-main hover:bg-alt">NUESTRO EQUIPO</a>
-             <a href="#contacto" class="block py-3 px-6 text-sm text-main hover:bg-alt">CONTACTO</a>
+             <a href="/" class="block py-3 px-6 text-sm text-main hover:bg-alt">INICIO</a>
+             <a href="/servicios" class="block py-3 px-6 text-sm text-main hover:bg-alt">SERVICIOS</a>
+             <a href="/proyecto" class="block py-3 px-6 text-sm text-main hover:bg-alt">PROPUESTA PEDAGÓGICA</a>
+             <a href="/educadores" class="block py-3 px-6 text-sm text-main hover:bg-alt">NUESTRO EQUIPO</a>
+             <a href="/contacto" class="block py-3 px-6 text-sm text-main hover:bg-alt">CONTACTO</a>
         </div>
     </header>
 
@@ -135,8 +135,8 @@
             </div>
         </section>
 
-        <section id="servicios" class="page-section bg-main py-20">
-            <div class="container mx-auto px-6">
+        <section id="servicios" class="page-section">
+            <div class="container mx-auto px-6 py-20">
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Nuestros Servicios</h2>
                     <p class="max-w-3xl mx-auto text-lg text-main leading-relaxed">
@@ -174,8 +174,8 @@
             </div>
         </section>
 
-        <section id="proyecto" class="page-section bg-main py-20">
-            <div class="container mx-auto px-6">
+        <section id="proyecto" class="page-section">
+            <div class="container mx-auto px-6 py-20">
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Nuestra Propuesta Pedagógica</h2>
                     <p class="max-w-3xl mx-auto text-lg text-main leading-relaxed">
@@ -230,8 +230,8 @@
             </div>
         </section>
 
-        <section id="educadores" class="page-section bg-main py-20">
-            <div class="container mx-auto px-6">
+        <section id="educadores" class="page-section">
+            <div class="container mx-auto px-6 py-20">
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Nuestro Equipo</h2>
                     <p class="max-w-3xl mx-auto text-lg leading-relaxed text-gray-700">
@@ -293,16 +293,18 @@
             </div>
         </section>
         
-        <section id="contacto" class="page-section bg-main py-20">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">Contacto</h2>
-                <p class="text-gray-700 max-w-2xl mx-auto mb-16">Nos encantaría saber de vos. Escribinos para coordinar una entrevista y contarte más sobre nuestra propuesta de apoyo escolar.</p>
+        <section id="contacto" class="page-section">
+            <div class="container mx-auto px-6 py-20">
+                <div class="text-center">
+                    <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">Contacto</h2>
+                    <p class="text-gray-700 max-w-2xl mx-auto mb-16">Nos encantaría saber de vos. Escribinos para coordinar una entrevista y contarte más sobre nuestra propuesta de apoyo escolar.</p>
+                </div>
                 
                 <div class="max-w-4xl mx-auto bg-alt p-8 md:p-12 rounded-lg shadow-lg">
                     <div class="grid md:grid-cols-2 gap-12 items-center">
                         <div class="rounded-lg shadow-md overflow-hidden h-96">
                            <iframe 
-                               src="http://googleusercontent.com/maps.google.com/4" 
+                               src="http://googleusercontent.com/maps/google.com/5" 
                                class="w-full h-full"
                                style="border:0;" 
                                allowfullscreen="" 

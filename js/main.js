@@ -1,4 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // --- Lógica para reemplazar imágenes rotas ---
+    document.addEventListener('error', function(event) {
+        // Asegurarse de que el error provenga de una etiqueta de imagen (<img>)
+        if (event.target.tagName.toLowerCase() !== 'img') {
+            return;
+        }
+
+        const img = event.target;
+
+        // Prevenir un bucle infinito si la imagen de reemplazo (box.png) tampoco se encuentra
+        if (img.dataset.fallbackApplied === 'true') {
+            return;
+        }
+        
+        img.dataset.fallbackApplied = 'true';
+        img.src = 'images/box.png';
+
+    }, true); // Usar "true" para capturar el evento en la fase de captura
+
     // --- Código existente que ya funcionaba ---
     lucide.createIcons();
     const sections = document.querySelectorAll('.page-section');
@@ -123,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
             images[currentIndex].classList.add('opacity-0');
             currentIndex = (currentIndex + 1) % images.length;
             images[currentIndex].classList.remove('opacity-0');
-        }, 4000); // Aumenté un poco el tiempo a 4 segundos para mejor visualización.
+        }, 4000);
     };
 
     // Iniciar el carrusel

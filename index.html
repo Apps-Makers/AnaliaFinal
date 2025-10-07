@@ -3,124 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cigoto - Espacio Educativo</title>
+    <title>Cigoto | Apoyo Escolar y Clases Particulares a Domicilio en Canning</title>
     
-    <!-- Tailwind CSS CDN -->
+    <meta name="description" content="Ofrecemos apoyo escolar, clases particulares a domicilio y maestras de apoyo para inclusión en Canning, Buenos Aires. Para nivel primario y secundario.">
+    <meta name="keywords" content="apoyo escolar, clases particulares, maestra a domicilio, maestra de apoyo, inclusión escolar, enseñanza personalizada, Canning, San Vicente, Ezeiza, primario, secundario">
+    <meta name="author" content="Cigoto Espacio Educativo">
+    <link rel="canonical" href="https://www.cigoto.com.ar"> <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.cigoto.com.ar"> <meta property="og:title" content="Cigoto | Apoyo Escolar y Clases Particulares a Domicilio en Canning">
+    <meta property="og:description" content="Servicio de apoyo escolar personalizado, clases a domicilio y acompañamiento para proyectos de inclusión en nivel primario y secundario.">
+    <meta property="og:image" content="https://www.cigoto.com.ar/images/logo-og.png"> <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.cigoto.com.ar"> <meta property="twitter:title" content="Cigoto | Apoyo Escolar y Clases Particulares a Domicilio en Canning">
+    <meta property="twitter:description" content="Servicio de apoyo escolar personalizado, clases a domicilio y acompañamiento para proyectos de inclusión en nivel primario y secundario.">
+    <meta property="twitter:image" content="https://www.cigoto.com.ar/images/logo-og.png"> <link rel="preload" as="image" href="images/home-carousel-1.jpg">
+    <link rel="preload" as="image" href="images/home-carousel-2.jpg">
+    <link rel="preload" as="image" href="images/home-carousel-3.jpg">
+    <link rel="preload" as="image" href="images/home-carousel-4.jpg">
+    <link rel="preload" as="image" href="images/home-carousel-5.jpg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- Favicon: Coloca tus archivos (favicon.ico, favicon.svg, etc.) en el directorio raíz de tu sitio. -->
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-    <!-- Iconos (Lucide) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <style>
-        :root {
-            --color-bg-main: #F9F7F3;          /* Blanco cálido */
-            --color-bg-alt: #E7D9C7;          /* Beige cálido medio */
-            --color-bg-mint: #D8E2DC;          /* Verde Menta Suave */
-            --color-brushstroke: rgba(231, 217, 199, 0.4); /* Beige para pinceladas */
-            --color-bg-dark-section: #1B4D3E; /* Verde Inglés */
-            --color-text-main: #1B4D3E;       /* Verde Inglés */
-            --color-accent-primary: #8A9A87;  /* Verde Salvia (armoniza con Verde Inglés) */
-            --color-accent-secondary: #B38A54;/* Marrón cálido/ocre */
-            --font-heading: 'Cormorant Garamond', serif;
-            --font-body: 'Josefin Sans', sans-serif;
-        }
-        body {
-            font-family: var(--font-body);
-            background-color: var(--color-bg-main);
-            color: var(--color-text-main);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            /* Efecto de pinceladas estéticas */
-            background-image:
-                radial-gradient(circle at 15% 20%, var(--color-brushstroke) 0%, transparent 30%),
-                radial-gradient(circle at 85% 70%, var(--color-brushstroke) 0%, transparent 40%);
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-        h1, h2, h3, h4, h5, h6, .font-heading {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        /* Clases personalizadas para colores */
-        .bg-main { background-color: var(--color-bg-main); }
-        .bg-alt { background-color: var(--color-bg-alt); }
-        .bg-mint { background-color: var(--color-bg-mint); }
-        .bg-dark-section { background-color: var(--color-bg-dark-section); }
-        .text-main { color: var(--color-text-main); }
-        .text-alt { color: var(--color-bg-main); } /* Texto sobre fondos oscuros */
-        .text-accent-primary { color: var(--color-accent-primary); }
-        .text-accent-secondary { color: var(--color-accent-secondary); }
-        .hover\:text-accent-secondary:hover { color: var(--color-accent-secondary); }
-        .bg-accent-secondary { background-color: var(--color-accent-secondary); }
-        .border-accent-primary { border-color: var(--color-accent-primary); }
-        
-        #desktop-menu li a, #mobile-menu a {
-            font-family: var(--font-body);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Estilo para las secciones que actúan como páginas */
-        .page-section { display: none; animation: fadeIn 0.5s ease-in-out; }
-        .page-section.active { display: block; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Estilo para el botón del menú móvil */
-        .hamburger-line { transition: all 0.3s ease-in-out; }
-        .hamburger.open .line-1 { transform: rotate(45deg) translate(5px, 5px); }
-        .hamburger.open .line-2 { opacity: 0; }
-        .hamburger.open .line-3 { transform: rotate(-45deg) translate(7px, -6px); }
-
-        /* Estilo para las rayas horizontales divisorias */
-        .section-divider { border-top: 1px solid var(--color-accent-primary); }
-
-        /* Estilos para el acordeón de FAQ */
-        .faq-question svg { transition: transform 0.3s ease; }
-        .faq-question.open svg { transform: rotate(180deg); }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; }
-    </style>
+    <link rel="stylesheet" href="css/estilos.css">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Cigoto Espacio Educativo",
+      "description": "Servicio de apoyo escolar, clases particulares a domicilio y maestras de apoyo para inclusión en Canning, Buenos Aires. Dedicado a alumnos de nivel primario y secundario.",
+      "url": "https://www.cigoto.com.ar",
+      "logo": "https://www.cigoto.com.ar/images/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+54-9-11-5249-5584",
+        "contactType": "Customer Service",
+        "email": "analiacacciamani@gmail.com",
+        "areaServed": "AR"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Canning",
+        "addressRegion": "Buenos Aires",
+        "addressCountry": "AR"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Canning, Buenos Aires"
+      }
+    }
+    </script>
 </head>
 <body class="antialiased">
 
-    <!-- ========== HEADER ========== -->
     <header id="header" class="sticky top-0 z-50 bg-main/80 backdrop-blur-md shadow-sm">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
              <a href="#home" class="flex items-center space-x-4">
-                 <img src="images/logo.png" alt="Logo de Cigoto" class="w-12 h-12 rounded-full">
+                 <img src="images/logo.png" alt="Logo de Cigoto Espacio Educativo" class="w-12 h-12 rounded-full">
                  <span class="font-heading text-3xl font-bold text-main">Cigoto</span>
              </a>
-             <ul id="desktop-menu" class="hidden md:flex items-center space-x-8 text-sm tracking-wider">
+             <ul id="desktop-menu" class="hidden lg:flex items-center space-x-8 text-sm tracking-wider ml-12">
                  <li><a href="#home" class="text-main hover:text-accent-secondary">INICIO</a></li>
                  <li><a href="#servicios" class="text-main hover:text-accent-secondary">SERVICIOS</a></li>
-                 <li><a href="#proyecto" class="text-main hover:text-accent-secondary">PROPUESTA PEDAGÓGICA</a></li>
-                 <li><a href="#educadores" class="text-main hover:text-accent-secondary">NUESTRO EQUIPO</a></li>
+                 <li><a href="#proyecto" class="text-main hover:text-accent-secondary whitespace-nowrap">PROPUESTA PEDAGÓGICA</a></li>
+                 <li><a href="#educadores" class="text-main hover:text-accent-secondary whitespace-nowrap">NUESTRO EQUIPO</a></li>
                  <li><a href="#contacto" class="text-main hover:text-accent-secondary">CONTACTO</a></li>
              </ul>
-             <button id="mobile-menu-button" class="md:hidden text-main focus:outline-none hamburger">
+             <button id="mobile-menu-button" class="lg:hidden text-main focus:outline-none hamburger">
                  <div class="w-6 h-6 flex flex-col justify-around">
-                     <span class="block w-full h-0.5 bg-main hamburger-line line-1"></span>
-                     <span class="block w-full h-0.5 bg-main hamburger-line line-2"></span>
-                     <span class="block w-full h-0.5 bg-main hamburger-line line-3"></span>
+                     <span class="block w-full h-0.5 bg-dark-section hamburger-line line-1"></span>
+                     <span class="block w-full h-0.5 bg-dark-section hamburger-line line-2"></span>
+                     <span class="block w-full h-0.5 bg-dark-section hamburger-line line-3"></span>
                  </div>
              </button>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-main text-center">
+        <div id="mobile-menu" class="hidden lg:hidden bg-main text-center">
              <a href="#home" class="block py-3 px-6 text-sm text-main hover:bg-alt">INICIO</a>
              <a href="#servicios" class="block py-3 px-6 text-sm text-main hover:bg-alt">SERVICIOS</a>
              <a href="#proyecto" class="block py-3 px-6 text-sm text-main hover:bg-alt">PROPUESTA PEDAGÓGICA</a>
@@ -130,24 +95,23 @@
     </header>
 
     <main>
-        <!-- ========== SECCIÓN INICIO ========== -->
         <section id="home" class="page-section">
             <div class="container mx-auto px-6 pt-16 pb-12 text-center">
+                <img src="images/logo.png" alt="Logo circular de Cigoto con diseño minimalista" class="mx-auto w-24 h-24 rounded-full mb-8">
                 <h1 class="text-4xl md:text-5xl font-bold font-heading mb-12 tracking-wider">BIENVENIDOS</h1>
             </div>
 
-            <!-- Full-width Carousel Container -->
             <div id="image-carousel" class="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px] overflow-hidden bg-alt">
-                <img src="images/home-carousel-1.jpg" alt="Enseñanza personalizada" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out">
-                <img src="images/home-carousel-2.jpg" alt="Todas las materias" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
-                <img src="images/home-carousel-3.jpg" alt="Apoyo escolar" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
-                <img src="images/home-carousel-4.jpg" alt="Proyectos de inclusión" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
-                <img src="images/home-carousel-5.jpg" alt="Niveles primario y secundario" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                <img src="images/home-carousel-1.jpg" alt="Maestra particular dando apoyo escolar personalizado a un alumno" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out">
+                <img src="images/home-carousel-2.jpg" alt="Libros y útiles escolares para todas las materias de primaria y secundaria" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                <img src="images/home-carousel-3.jpg" alt="Niño recibiendo apoyo escolar en su casa" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                <img src="images/home-carousel-4.jpg" alt="Maestra de apoyo para proyectos de inclusión escolar" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                <img src="images/home-carousel-5.jpg" alt="Estudiantes de nivel primario y secundario en clase" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
             </div>
 
             <div class="container mx-auto px-6 pt-16 pb-24 text-center">
                 <div class="max-w-3xl mx-auto text-lg leading-relaxed text-main space-y-6">
-                    <p>Cigoto está conformado por un grupo de maestras dedicadas a la <strong class="font-semibold">enseñanza a domicilio</strong> para alumnos de nivel primario y secundario.</p>
+                    <p>Cigoto está conformado por un grupo de maestras dedicadas a la <strong class="font-semibold">enseñanza a domicilio</strong> para alumnos de nivel primario y secundario en Canning y alrededores.</p>
                     <p>Abarcamos las áreas de Prácticas del Lenguaje, Ciencias Sociales, Ciencias Naturales, Matemáticas e Inglés y ofrecemos un servicio de <strong class="font-semibold">acompañamiento áulico (maestra de apoyo)</strong> para proyectos de inclusión dentro de las escuelas, por fuera de las obras sociales.</p>
                 </div>
                 <div class="py-16"><div class="section-divider max-w-xs mx-auto"></div></div>
@@ -165,13 +129,12 @@
                     <div class="flex flex-col items-center">
                         <i data-lucide="home" class="w-12 h-12 mb-4 text-accent-secondary"></i>
                         <h3 class="font-heading font-bold text-xl mb-2">PERSONALIZACIÓN</h3>
-                        <p class="text-gray-700">Ofrecemos clases a domicilio y apoyo escolar en distintas áreas, adaptando la propuesta a cada necesidad y contexto familiar.</p>
+                        <p class="text-gray-700">Ofrecemos clases particulares en distintas áreas, adaptando la propuesta a cada necesidad y contexto familiar.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========== SECCIÓN SERVICIOS ========== -->
         <section id="servicios" class="page-section bg-main py-20">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
@@ -181,33 +144,29 @@
                     </p>
                 </div>
 
-                <!-- Carousel de Imágenes para Servicios -->
-                <div id="services-carousel" class="relative w-full max-w-4xl mx-auto h-64 sm:h-80 md:h-96 lg:h-[450px] overflow-hidden bg-alt rounded-lg shadow-lg mb-16">
-                    <img src="images/services-carousel-1.jpg" alt="Aprendizaje Diverso" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out">
-                    <img src="images/services-carousel-2.jpg" alt="Enfoque en Posibilidades" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
-                    <img src="images/services-carousel-3.jpg" alt="Maestras Mediadoras" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
-                </div>
-
-
-                <!-- Texto -->
-                <div class="grid md:grid-cols-2 gap-16 items-center mb-16">
-                    <div class="text-center md:text-left">
+                <div class="max-w-4xl mx-auto space-y-12 text-center">
+                    <div>
+                        <img src="images/services-carousel-1.jpg" alt="Niños con diferentes estilos de aprendizaje siendo apoyados" class="rounded-lg shadow-lg w-full h-auto mx-auto">
+                    </div>
+                    <div class="max-w-2xl mx-auto">
                         <h3 class="text-2xl font-heading font-bold mb-4">Una Mirada, no una Etiqueta</h3>
-                        <p class="text-gray-700">
+                        <p class="text-gray-700 leading-relaxed">
                             Consideramos que cualquier tipo de diagnóstico (dislexia, discalculia, autismo, TDAH, entre otros) nos sirve para arrojar luz y comprender, pero nunca para etiquetar. 
                         </p>
                     </div>
-                    <div class="text-center md:text-left">
+                    <div class="max-w-2xl mx-auto">
                         <h3 class="text-2xl font-heading font-bold mb-4">Construir sobre Posibilidades</h3>
-                        <p class="text-gray-700">
+                        <p class="text-gray-700 leading-relaxed">
                             No trabajamos únicamente sobre las dificultades, sino sobre las posibilidades. Quienes conformamos Cigoto somos maestras y construimos oportunidades que contribuyan en el proceso de enseñanza-aprendizaje.
                         </p>
                     </div>
+                    <div>
+                        <img src="images/services-carousel-2.jpg" alt="Maestra enfocada en las posibilidades y fortalezas de un estudiante" class="rounded-lg shadow-lg w-full h-auto mx-auto">
+                    </div>
                 </div>
                 
-                <!-- Cita Final en un Rectángulo -->
-                <div class="mt-8 text-center max-w-3xl mx-auto bg-mint p-8 md:p-12 rounded-lg shadow-sm border border-accent-primary/20">
-                     <p class="text-2xl font-body italic text-main mb-6">"si un niño es incapaz de aprender es porque nosotros somos incapaces de enseñar."</p>
+                <div class="mt-20 text-center max-w-3xl mx-auto bg-mint p-8 md:p-12 rounded-lg shadow-sm border border-accent-primary/20">
+                     <p class="text-2xl font-body italic text-main mb-6">"Si un niño es incapaz de aprender es porque nosotros somos incapaces de enseñar."</p>
                      <p class="text-lg font-semibold uppercase tracking-wider text-main">El maestro como mediador cultural, no como portavoz de contenidos.</p>
                      <p class="mt-8 text-main">El nombre <strong class="font-bold">Cigoto</strong> significa “El inicio del desarrollo”.</p>
                 </div>
@@ -215,7 +174,6 @@
             </div>
         </section>
 
-        <!-- ========== SECCIÓN PROPUESTA PEDAGÓGICA ========== -->
         <section id="proyecto" class="page-section bg-main py-20">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
@@ -225,16 +183,15 @@
                     </p>
                 </div>
 
-                <!-- Principios Fundamentales -->
                 <div class="grid md:grid-cols-2 gap-12 items-center text-left mb-16">
                      <div class="flex flex-col gap-8">
-                         <img src="images/propuesta-1.jpg" alt="Enseñanza personalizada" class="rounded-lg shadow-md w-full">
-                         <img src="images/propuesta-2.jpg" alt="Aprendizaje Activo" class="rounded-lg shadow-md w-full">
+                         <img src="images/propuesta-1.jpg" alt="Enseñanza personalizada a domicilio" class="rounded-lg shadow-md w-full">
+                         <img src="images/propuesta-2.jpg" alt="Alumno participando activamente en una clase particular" class="rounded-lg shadow-md w-full">
                      </div>
                      <div>
                          <h3 class="text-2xl font-heading font-bold mb-6">Principios Fundamentales</h3>
                          <ul class="space-y-6 text-main text-lg">
-                             <li class="flex items-start"><i data-lucide="brain-circuit" class="w-6 h-6 mr-4 text-accent-secondary mt-1 flex-shrink-0"></i><span><strong class="font-semibold">Ser reflexivo y pensante:</strong> Nuestro objetivo es proponer situaciones de enseñanza que no tomen al niño como un ser operacional, sino como un individuo con juicio propio y capacidad de comprensión.</span></li>
+                             <li class="flex items-start"><i data-lucide="brain-circuit" class="w-6 h-6 mr-4 text-accent-secondary mt-1 flex-shrink-0"></i><span><strong class="font-semibold">Ser reflexivo y pensante:</strong> Nuestro objetivo es proponer situaciones de enseñanza que no toman al niño como un ser operacional, sino como un individuo con juicio propio y capacidad de comprensión.</span></li>
                              <li class="flex items-start"><i data-lucide="flame" class="w-6 h-6 mr-4 text-accent-secondary mt-1 flex-shrink-0"></i><span><strong class="font-semibold">Pasión por el conocimiento:</strong> No solo aprendemos para ser evaluados, sino que construimos conocimientos para despertar la pasión por el saber mismo.</span></li>
                              <li class="flex items-start"><i data-lucide="milestone" class="w-6 h-6 mr-4 text-accent-secondary mt-1 flex-shrink-0"></i><span><strong class="font-semibold">Aprendizaje constructivo:</strong> Entendemos el aprendizaje como un proceso que produce cultura y conocimiento significativo y relevante, que es el que verdaderamente no se olvida.</span></li>
                               <li class="flex items-start"><i data-lucide="trending-up" class="w-6 h-6 mr-4 text-accent-secondary mt-1 flex-shrink-0"></i><span><strong class="font-semibold">La inteligencia se construye:</strong> La inteligencia no es previa al aprendizaje; el mismo proceso de aprender produce desarrollo cognitivo y nos hace más inteligentes.</span></li>
@@ -245,7 +202,6 @@
 
                 <div class="py-10"><div class="section-divider max-w-xs mx-auto"></div></div>
                 
-                <!-- Metodología -->
                 <div class="mt-16">
                      <h3 class="text-2xl font-heading font-bold mb-12 text-center">Áreas de Acompañamiento</h3>
                      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-4xl mx-auto">
@@ -274,7 +230,6 @@
             </div>
         </section>
 
-        <!-- ========== SECCIÓN NUESTRO EQUIPO ========== -->
         <section id="educadores" class="page-section bg-main py-20">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
@@ -283,15 +238,12 @@
                         Somos un equipo de maestras profesionales, apasionadas por la educación y en constante formación, comprometidas con un acompañamiento cercano y respetuoso.
                     </p>
                 </div>
-            </div>      
-            <!-- Contenedor para las presentaciones del equipo -->
-            <div>
-                <!-- Presentación 1 (Nuevo Texto) -->
-                <div class="bg-mint py-12">
-                    <div class="container mx-auto px-6">
+            
+                <div class="space-y-20">
+                    <div class="bg-white p-8 md:p-12 rounded-lg shadow-lg">
                         <div class="grid md:grid-cols-2 gap-12 items-center">
                             <div class="w-full max-w-md mx-auto">
-                                <img src="images/equipo-1.jpg" alt="Analia Cacciamani" class="rounded-lg shadow-md w-full h-auto">
+                                <img src="images/equipo-1.jpg" alt="Retrato de Analia Cacciamani, fundadora de Cigoto" class="rounded-lg shadow-md w-full h-auto">
                             </div>
                             <div class="text-left">
                                 <h3 class="font-heading text-3xl font-bold mb-6">Analia Cacciamani</h3>
@@ -302,14 +254,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                 <!-- Presentación 2 (Vanesa) -->
-                <div class="bg-alt py-12">
-                    <div class="container mx-auto px-6">
+                    <div class="bg-white p-8 md:p-12 rounded-lg shadow-lg">
                         <div class="grid md:grid-cols-2 gap-12 items-center">
                             <div class="md:order-2 w-full max-w-md mx-auto">
-                                <img src="images/equipo-vanesa.jpg" alt="Vanesa Vota" class="rounded-lg shadow-md w-full h-auto">
+                                <img src="images/equipo-vanesa.jpg" alt="Retrato de Vanesa Vota, Profesora de Inglés" class="rounded-lg shadow-md w-full h-auto">
                             </div>
                             <div class="text-left md:order-1">
                                 <h3 class="font-heading text-3xl font-bold mb-2">Vanesa Vota</h3>
@@ -322,14 +271,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Presentación 3 (Placeholder) -->
-                <div class="bg-mint py-12">
-                    <div class="container mx-auto px-6">
-                         <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="bg-white p-8 md:p-12 rounded-lg shadow-lg">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
                             <div class="w-full max-w-md mx-auto">
-                                <img src="images/equipo-3.jpg" alt="Griselda Etchepare" class="rounded-lg shadow-md w-full h-auto">
+                                <img src="images/equipo-3.jpg" alt="Retrato de Griselda Etchepare, Profesora de Matemática" class="rounded-lg shadow-md w-full h-auto">
                             </div>
                             <div class="text-left">
                                 <h3 class="font-heading text-3xl font-bold mb-2">Griselda Etchepare</h3>
@@ -342,21 +288,28 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </section>
         
-        <!-- ========== SECCIÓN CONTACTO ========== -->
         <section id="contacto" class="page-section bg-main py-20">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">Contacto</h2>
-                <p class="text-gray-700 max-w-2xl mx-auto mb-16">Nos encantaría saber de vos. Escribinos para coordinar una entrevista y contarte más sobre nuestra propuesta.</p>
+                <p class="text-gray-700 max-w-2xl mx-auto mb-16">Nos encantaría saber de vos. Escribinos para coordinar una entrevista y contarte más sobre nuestra propuesta de apoyo escolar.</p>
                 
                 <div class="max-w-4xl mx-auto bg-alt p-8 md:p-12 rounded-lg shadow-lg">
                     <div class="grid md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <img src="images/contacto.jpg" alt="Imagen de contacto" class="rounded-lg shadow-md w-full h-full object-cover">
+                        <div class="rounded-lg shadow-md overflow-hidden h-96">
+                           <iframe 
+                               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52417.92523733056!2d-58.53507311116456!3d-34.85664273393933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcd11ad550325b%3A0x33451633a63f71de!2sCanning%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1696634425811!5m2!1ses!2sar" 
+                               class="w-full h-full"
+                               style="border:0;" 
+                               allowfullscreen="" 
+                               loading="lazy" 
+                               referrerpolicy="no-referrer-when-downgrade"
+                               title="Mapa del área de servicio en Canning, Buenos Aires">
+                           </iframe>
                         </div>
                         <div class="text-center md:text-left">
                             <h3 class="font-heading text-2xl font-bold mb-8">Canales de Comunicación</h3>
@@ -382,17 +335,15 @@
             </div>
         </section>
 
-        <!-- ========== FOOTER ========== -->
         <footer class="bg-main pb-10">
             <div class="container mx-auto px-6 text-center">
                 <div class="pt-10 border-t border-alt">
-                   <p class="text-gray-600 text-sm">&copy; <span id="year"></span> Cigoto. Todos los derechos reservados.</p>
+                   <p class="text-gray-600 text-sm">© <span id="year"></span> Cigoto. Todos los derechos reservados.</p>
                </div>
             </div>
         </footer>
     </main>
 
-    <!-- ========== MODAL PARA COPIAR EMAIL ========== -->
     <div id="email-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[100] flex justify-center items-center p-4 transition-opacity duration-300 ease-in-out opacity-0">
         <div class="bg-main p-8 rounded-lg shadow-2xl max-w-sm w-full text-center transform transition-all duration-300 ease-in-out scale-95 opacity-0">
             <h4 class="font-heading text-xl mb-2">Copiar Email</h4>
@@ -407,180 +358,7 @@
         </div>
     </div>
 
-    <script>
-        // --- Lógica de la Interfaz (Menú, Navegación, Modal) ---
-        document.addEventListener('DOMContentLoaded', function() {
-            lucide.createIcons(); // Activar íconos
-            const sections = document.querySelectorAll('.page-section');
-            const navLinks = document.querySelectorAll('header a[href^="#"]');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            // --- Lógica de Navegación SPA ---
-            const showSection = (hash) => {
-                const targetHash = (hash && hash !== '#') ? hash : '#home';
-                const targetId = targetHash.substring(1);
-                let sectionFound = false;
-                sections.forEach(section => {
-                    if (section.id === targetId) {
-                        section.classList.add('active');
-                        sectionFound = true;
-                    } else {
-                        section.classList.remove('active');
-                    }
-                });
-                if (!sectionFound) {
-                    document.getElementById('home').classList.add('active');
-                }
-                if(history.pushState) {
-                    history.pushState(null, null, targetHash);
-                } else {
-                    location.hash = targetHash;
-                }
-                window.scrollTo(0, 0);
-            };
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const hash = link.getAttribute('href');
-                    showSection(hash);
-                    if (!mobileMenu.classList.contains('hidden')) {
-                         mobileMenu.classList.add('hidden');
-                         mobileMenuButton.classList.remove('open');
-                    }
-                });
-            });
-
-            window.addEventListener('popstate', () => {
-                showSection(window.location.hash);
-            });
-            showSection(window.location.hash);
-
-            // --- Lógica del Menú Móvil ---
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                mobileMenuButton.classList.toggle('open');
-            });
-            
-            // --- Script para el año actual en el footer ---
-            document.getElementById('year').textContent = new Date().getFullYear();
-
-            // --- Lógica del Modal de Email ---
-            const emailModal = document.getElementById('email-modal');
-            const modalContent = emailModal.querySelector('div');
-            const emailButton = document.getElementById('email-button');
-            const copyEmailBtn = document.getElementById('copy-email-btn');
-            const cancelCopyBtn = document.getElementById('cancel-copy-btn');
-            const emailToCopy = document.getElementById('email-to-copy');
-
-            const openModal = () => {
-                emailModal.classList.remove('hidden');
-                setTimeout(() => {
-                    emailModal.classList.remove('opacity-0');
-                    modalContent.classList.remove('scale-95', 'opacity-0');
-                }, 10);
-            };
-
-            const closeModal = () => {
-                emailModal.classList.add('opacity-0');
-                modalContent.classList.add('scale-95', 'opacity-0');
-                setTimeout(() => {
-                    emailModal.classList.add('hidden');
-                    copyEmailBtn.textContent = 'Copiar';
-                    copyEmailBtn.disabled = false;
-                }, 300);
-            };
-
-            emailButton.addEventListener('click', openModal);
-            cancelCopyBtn.addEventListener('click', closeModal);
-            emailModal.addEventListener('click', (event) => {
-                if (event.target === emailModal) closeModal();
-            });
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && !emailModal.classList.contains('hidden')) closeModal();
-            });
-
-            copyEmailBtn.addEventListener('click', () => {
-                const text = emailToCopy.textContent;
-                const textArea = document.createElement('textarea');
-                textArea.value = text;
-                textArea.style.position = 'fixed';
-                textArea.style.left = '-9999px';
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    copyEmailBtn.textContent = '¡Copiado!';
-                    copyEmailBtn.disabled = true;
-                    setTimeout(closeModal, 1500);
-                } catch (err) {
-                    console.error('No se pudo copiar el texto: ', err);
-                    copyEmailBtn.textContent = 'Error';
-                }
-                document.body.removeChild(textArea);
-            });
-
-            // --- Lógica Global para Errores de Imagen (JPG/PNG Fallback) ---
-            document.addEventListener('error', function (event) {
-                if (event.target.tagName.toLowerCase() !== 'img') return;
-                const img = event.target;
-                if (img.src.includes('placehold.co')) return;
-                
-                const showErrorPlaceholder = () => {
-                    const width = img.offsetWidth > 0 ? img.offsetWidth : 600;
-                    const height = img.offsetHeight > 0 ? img.offsetHeight : 400;
-                    const originalSrcPath = img.dataset.originalSrc || img.getAttribute('src');
-                    img.src = `https://placehold.co/${width}x${height}/E7D9C7/1B4D3E?text=Ruta: ${encodeURIComponent(originalSrcPath)}`;
-                    console.warn(`No se pudo cargar la imagen: ${originalSrcPath}`);
-                };
-
-                if (!img.dataset.originalSrc) {
-                    img.dataset.originalSrc = img.getAttribute('src');
-                }
-                if (img.dataset.fallbackTried === 'true') {
-                    showErrorPlaceholder();
-                    return;
-                }
-                img.dataset.fallbackTried = 'true';
-
-                const originalPath = img.dataset.originalSrc;
-                let fallbackSrc;
-                if (originalPath.toLowerCase().endsWith('.jpg')) {
-                    fallbackSrc = originalPath.replace(/\.jpg$/i, '.png');
-                } else if (originalPath.toLowerCase().endsWith('.png')) {
-                    fallbackSrc = originalPath.replace(/\.png$/i, '.jpg');
-                } else {
-                    showErrorPlaceholder();
-                    return;
-                }
-                img.src = fallbackSrc;
-            }, true);
-        });
-
-        // --- Lógica del Carrusel (Se ejecuta después de que todo cargue) ---
-        window.addEventListener('load', () => {
-            const setupCarousel = (carouselId) => {
-                const carouselContainer = document.getElementById(carouselId);
-                if (!carouselContainer) return;
-
-                const images = Array.from(carouselContainer.getElementsByTagName('img'));
-                if (images.length < 2) return; // No hace falta carrusel si hay 1 o 0 imágenes
-
-                let currentIndex = 0;
-                // La primera imagen ya es visible por defecto gracias al HTML
-
-                setInterval(() => {
-                    images[currentIndex].classList.add('opacity-0'); // Oculta la imagen actual
-                    currentIndex = (currentIndex + 1) % images.length; // Calcula el índice de la siguiente
-                    images[currentIndex].classList.remove('opacity-0'); // Muestra la siguiente imagen
-                }, 3000);
-            };
-
-            setupCarousel('image-carousel');
-            setupCarousel('services-carousel');
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
 

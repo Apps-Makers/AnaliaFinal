@@ -1,57 +1,71 @@
-/* /mi-proyecto/css/estilos.css */
-
-/* Estilos base para usar las fuentes */
+:root {
+    --color-bg-main: #F9F7F3;
+    --color-bg-alt: #E7D9C7;
+    --color-bg-mint: #D8E2DC;
+    --color-brushstroke: rgba(231, 217, 199, 0.4);
+    --color-bg-dark-section: #1B4D3E;
+    --color-text-main: #1B4D3E;
+    --color-accent-primary: #8A9A87;
+    --color-accent-secondary: #B38A54;
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Josefin Sans', sans-serif;
+}
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #ffffff; 
-    color: #212529; /* Un negro suave para el texto principal */
+    font-family: var(--font-body);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image:
+        radial-gradient(circle at 15% 20%, var(--color-brushstroke) 0%, transparent 30%),
+        radial-gradient(circle at 85% 70%, var(--color-brushstroke) 0%, transparent 40%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.bg-main { background-color: var(--color-bg-main); }
+.bg-alt { background-color: var(--color-bg-alt); }
+.bg-mint { background-color: var(--color-bg-mint); }
+.bg-dark-section { background-color: var(--color-bg-dark-section); }
+.text-main { color: var(--color-text-main); }
+.text-alt { color: var(--color-bg-main); }
+.text-accent-primary { color: var(--color-accent-primary); }
+.text-accent-secondary { color: var(--color-accent-secondary); }
+.hover\:text-accent-secondary:hover { color: var(--color-accent-secondary); }
+.bg-accent-secondary { background-color: var(--color-accent-secondary); }
+.border-accent-primary { border-color: var(--color-accent-primary); }
+
+#desktop-menu li a, #mobile-menu a {
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-.font-title {
-    font-family: 'Parisienne', cursive;
-}
- 
-/* --- ANIMACIONES --- */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
+.page-section { display: none; animation: fadeIn 0.5s ease-in-out; }
+.page-section.active { display: block; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+.hamburger-line { transition: all 0.3s ease-in-out; }
+.hamburger.open .line-1 { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.open .line-2 { opacity: 0; }
+.hamburger.open .line-3 { transform: rotate(-45deg) translate(7px, -6px); }
 
-.animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
-.animate-fadeIn { animation: fadeIn 1s ease-out forwards; }
-.animation-delay-200 { animation-delay: 0.2s; }
-.animation-delay-400 { animation-delay: 0.4s; }
-.animated { opacity: 0; }
+.section-divider { border-top: 1px solid var(--color-accent-primary); }
 
-/* Estilo para el enlace de navegación activo */
-.nav-link.active {
-    color: #000000;
-    font-weight: 600;
-}
+.faq-question svg { transition: transform 0.3s ease; }
+.faq-question.open svg { transform: rotate(180deg); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; }
 
-/* Indicador de punto para el menú de escritorio */
-#desktop-nav .nav-link.active {
-    position: relative;
-}
-
-#desktop-nav .nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background-color: #000000;
-    border-radius: 50%;
-}
-
-/* Fondo de color para el menú móvil activo */
-#mobile-menu .nav-link.active {
-    background-color: #f3f4f6; /* gray-100 */
+/* Mejora para la transición suave del carrusel */
+#image-carousel img {
+    will-change: opacity;
 }

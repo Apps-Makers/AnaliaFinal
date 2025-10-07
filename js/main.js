@@ -18,20 +18,29 @@ document.addEventListener('DOMContentLoaded', function() {
         // Convierte la ruta (ej. "/servicios") en un ID (ej. "servicios")
         const targetId = path === '/' ? 'home' : path.substring(1);
         
+        let sectionFound = false;
         sections.forEach(section => {
             if (section.id === targetId) {
                 section.classList.add('active');
+                sectionFound = true;
             } else {
                 section.classList.remove('active');
             }
         });
+
+        // Si no se encuentra ninguna sección, muestra 'home' por defecto
+        if (!sectionFound) {
+            document.getElementById('home').classList.add('active');
+        }
         window.scrollTo(0, 0);
     };
 
     const handleNavigation = (path) => {
         showSection(path);
         // Usa la History API para cambiar la URL sin recargar la página
-        history.pushState({path: path}, '', path);
+        if (window.location.pathname !== path) {
+            history.pushState({path: path}, '', path);
+        }
     };
 
     navLinks.forEach(link => {
@@ -116,9 +125,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const images = Array.from(carouselContainer.getElementsByTagName('img'));
         if (images.length < 2) return;
         let currentIndex = 0;
+        
         images.forEach((img, index) => {
-            img.classList.toggle('opacity-0', index !== 0);
+            if (index === 0) {
+                img.classList.remove('opacity-0');
+            } else {
+                img.classList.add('opacity-0');
+            }
         });
+        
         setInterval(() => {
             images[currentIndex].classList.add('opacity-0');
             currentIndex = (currentIndex + 1) % images.length;

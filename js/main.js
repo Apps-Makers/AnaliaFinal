@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // --- Código existente que ya funcionaba ---
     lucide.createIcons();
     const sections = document.querySelectorAll('.page-section');
     const navLinks = document.querySelectorAll('header a[href^="#"]');
@@ -20,14 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!sectionFound) {
             document.getElementById('home').classList.add('active');
         }
-        if(history.pushState) {
+        if (history.pushState) {
             history.pushState(null, null, targetHash);
         } else {
             location.hash = targetHash;
         }
         window.scrollTo(0, 0);
     };
-    
+
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenu.classList.toggle('hidden');
         mobileMenuButton.classList.toggle('open');
     });
-    
+
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const emailModal = document.getElementById('email-modal');
@@ -88,73 +89,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
     copyEmailBtn.addEventListener('click', () => {
         const text = emailToCopy.textContent;
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-9999px';
-        document.body.appendChild(textArea);
-        textArea.select();
-        try {
-            document.execCommand('copy');
+        navigator.clipboard.writeText(text).then(() => {
             copyEmailBtn.textContent = '¡Copiado!';
             copyEmailBtn.disabled = true;
             setTimeout(closeModal, 1500);
-        } catch (err) {
+        }).catch(err => {
             console.error('No se pudo copiar el texto: ', err);
             copyEmailBtn.textContent = 'Error';
-        }
-        document.body.removeChild(textArea);
+        });
     });
 
-    document.addEventListener('error', function (event) {
-        if (event.target.tagName.toLowerCase() !== 'img') return;
-        const img = event.target;
-        if (img.src.includes('placehold.co')) return;
-        
-        const showErrorPlaceholder = () => {
-            const width = img.offsetWidth > 0 ? img.offsetWidth : 600;
-            const height = img.offsetHeight > 0 ? img.offsetHeight : 400;
-            const originalSrcPath = img.dataset.originalSrc || img.getAttribute('src');
-            img.src = `https://placehold.co/${width}x${height}/E7D9C7/1B4D3E?text=Ruta: ${encodeURIComponent(originalSrcPath)}`;
-            console.warn(`No se pudo cargar la imagen: ${originalSrcPath}`);
-        };
-
-        if (!img.dataset.originalSrc) {
-            img.dataset.originalSrc = img.getAttribute('src');
-        }
-        if (img.dataset.fallbackTried === 'true') {
-            showErrorPlaceholder();
-            return;
-        }
-        img.dataset.fallbackTried = 'true';
-
-        const originalPath = img.dataset.originalSrc;
-        let fallbackSrc;
-        if (originalPath.toLowerCase().endsWith('.jpg')) {
-            fallbackSrc = originalPath.replace(/\.jpg$/i, '.png');
-        } else if (originalPath.toLowerCase().endsWith('.png')) {
-            fallbackSrc = originalPath.replace(/\.png$/i, '.jpg');
-        } else {
-            showErrorPlaceholder();
-            return;
-        }
-        img.src = fallbackSrc;
-    }, true);
-});
-
-window.addEventListener('load', () => {
+    // --- CÓDIGO DEL CARROUSEL MEJORADO ---
     const setupCarousel = (carouselId) => {
         const carouselContainer = document.getElementById(carouselId);
         if (!carouselContainer) return;
+
         const images = Array.from(carouselContainer.getElementsByTagName('img'));
         if (images.length < 2) return;
+
         let currentIndex = 0;
+
+        // Asegurarse de que la primera imagen sea visible inmediatamente.
+        images.forEach((img, index) => {
+            if (index === 0) {
+                img.classList.remove('opacity-0');
+            } else {
+                img.classList.add('opacity-0');
+            }
+        });
+
+        // Iniciar el intervalo para cambiar las imágenes.
         setInterval(() => {
             images[currentIndex].classList.add('opacity-0');
             currentIndex = (currentIndex + 1) % images.length;
             images[currentIndex].classList.remove('opacity-0');
-        }, 3000);
+        }, 4000); // Aumenté un poco el tiempo a 4 segundos para mejor visualización.
     };
+
+    // Iniciar el carrusel
     setupCarousel('image-carousel');
 });
-

@@ -14,8 +14,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
 
+    // --- INICIO DE LA MEJORA SEO ---
+    // Objeto que almacena los títulos para cada sección.
+    // Esto es clave para que cada "página" tenga un título único para Google.
+    const pageTitles = {
+        'home': 'Cigoto | Apoyo Escolar a Domicilio en Canning',
+        'servicios': 'Servicios de Apoyo Escolar y Acompañamiento | Cigoto',
+        'proyecto': 'Propuesta Pedagógica Personalizada | Cigoto',
+        'educadores': 'Nuestro Equipo de Educadoras | Cigoto',
+        'contacto': 'Contacto para Clases Particulares | Cigoto'
+    };
+    // --- FIN DE LA MEJORA SEO ---
+
+
     const showSection = (path) => {
-        // Convierte la ruta (ej. "/servicios") en un ID (ej. "servicios")
         const targetId = path === '/' ? 'home' : path.substring(1);
         
         let sectionFound = false;
@@ -27,17 +39,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 section.classList.remove('active');
             }
         });
+        
+        const currentTargetId = sectionFound ? targetId : 'home';
 
-        // Si no se encuentra ninguna sección, muestra 'home' por defecto
         if (!sectionFound) {
             document.getElementById('home').classList.add('active');
         }
+        
+        // --- INICIO DE LA MEJORA SEO ---
+        // Actualiza el título del documento (lo que se ve en la pestaña del navegador)
+        // según la sección que se está mostrando.
+        document.title = pageTitles[currentTargetId] || pageTitles['home'];
+        // --- FIN DE LA MEJORA SEO ---
+
         window.scrollTo(0, 0);
     };
 
     const handleNavigation = (path) => {
         showSection(path);
-        // Usa la History API para cambiar la URL sin recargar la página
         if (window.location.pathname !== path) {
             history.pushState({path: path}, '', path);
         }
@@ -45,12 +64,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            // Evita que el navegador recargue la página
             e.preventDefault();
             const path = link.getAttribute('href');
             handleNavigation(path);
             
-            // Cierra el menú móvil si está abierto
             if (!mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
                 mobileMenuButton.classList.remove('open');
@@ -58,15 +75,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Maneja los botones de "atrás" y "adelante" del navegador
     window.addEventListener('popstate', (e) => {
         showSection(window.location.pathname);
     });
 
-    // Muestra la sección correcta al cargar la página por primera vez o al refrescar
     showSection(window.location.pathname);
 
-    // --- Código existente que no necesita cambios ---
     mobileMenuButton.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
         mobileMenuButton.classList.toggle('open');

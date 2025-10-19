@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Objeto que almacena los títulos para cada sección.
     // Esto es clave para que cada "página" tenga un título único para Google.
     const pageTitles = {
-        'home': 'Cigoto | Apoyo Escolar a Domicilio en Canning',
+        // MODIFICADO: Título dinámico SEO para la home
+        'home': 'Cigoto | Apoyo Escolar a Domicilio en San Vicente y Canning',
         'servicios': 'Servicios de Apoyo Escolar y Acompañamiento | Cigoto',
         'proyecto': 'Propuesta Pedagógica Personalizada | Cigoto',
         'educadores': 'Nuestro Equipo de Educadoras | Cigoto',
